@@ -1,104 +1,45 @@
 #include "Puzzle.h"
 
-Puzzle::Puzzle()
+Puzzle::Puzzle(int* originalVal, int dimensionsVal)
 {
-	grid = new int* [4];
+	size = (dimensionsVal * dimensionsVal) - 1;
+	dimensions = dimensionsVal;
 
-	for (int i = 0; i < 4; i++)
-		grid[i] = new int[4];
-
-
-	int counter = 1;
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-		{
-			grid[i][j] = counter;
-			counter++;
-		}
-
-	int counter2 = 1;
-	for (int i = 0; i < 4; i++)
-		for (int j = 0; j < 4; j++)
-		{
-			original[counter2] = grid[i][j];
-			counter2++;
-		}
-
-	permutationCounter = 0;
+	original = originalVal;
+	copy = new int[size];
 
 
+	for (int i = 0; i < size; i++)
+	{
+		copy[i] = original[i];
+	}
+
+		
 }
 
 Puzzle::~Puzzle()
 {
-	for (int i = 0; i < 4; i++)
-		delete[] grid[i];
+	delete[] original;
 
-	delete[] grid;
+	delete[] copy;
 }
 
-int** Puzzle::getGrid()
+int* Puzzle::getCopy()
 {
-	return grid;
+	return copy;
 }
 
-int* Puzzle::getOriginal()
+int* Puzzle::getOriginal() const
 {
-	int* arr = original;
-	return arr;
+	return original;
 }
 
-void Puzzle::swap(int pos1, int pos2, int* arr)
+int Puzzle::getSize() const
 {
-	int temp = arr[pos1];
-	arr[pos1] = arr[pos2];
-	arr[pos2] = temp;
+	return size;
 }
 
-void Puzzle::printArray(int* arr)
+int Puzzle::getDimensions() const
 {
-	permutationCounter++;
-	std::cout << permutationCounter << std::endl;
-	std::cout << "\n\n" << std::endl;
-
-
-	for (int i = 0; i < 7; i++) 
-	{
-		std::cout << arr[i] << std::endl;
-	}
-	
-	std::cout << "\n\n\n\n" << std::endl;
+	return dimensions;
 }
-
-
-void Puzzle::permutations(int k, int* arr)
-{
-	if (k == 1)
-	{
-		printArray(arr);
-		//Finished
-	}
-	else
-	{
-		// Generate permutations with kth unaltered
-		// Initially k == length(A)
-		permutations(k - 1, arr);
-
-		// Generate permutations for kth swapped with each k-1 initial
-		for (int i = 0; i < k - 1; i++)
-		{
-			// Swap choice dependent on parity of k (even or odd)
-			if ((k % 2) == 0)
-			{
-				swap(i, k - 1, arr); // zero-indexed, the kth is at k-1
-			}
-			else
-			{
-				swap(0, k - 1, arr);
-			}
-
-			permutations(k - 1, arr);
-		}
-	}
-}
-

@@ -1,25 +1,16 @@
 #include "Puzzle.h"
-
-
+#include "BruteForce.h"
 
 int main() 
 {
-	Puzzle p;
-
-	int** arr = p.getGrid();
-
-	int testArray[7]{ 1, 2, 3, 4, 5, 6, 7};
-
+	int testArray[8]{ 1, 2, 3, 4, 5, 6, 7, 8}; // three by three
 	int* pointer = testArray;
-	p.permutations(7, pointer);
+	Puzzle p(pointer, 3);
+	
+	BruteForce b(&p);
 
-	//for (int i = 0; i < 4; i++)
-	//	for (int j = 0; j < 4; j++)
-	//	{
-	//		std::cout << arr[i][j] << std::endl;
-	//	}
-
-
+	b.permutations(8);
+	b.printInfo();
 
 	std::cin.get();
 	return 0;
