@@ -1,3 +1,6 @@
-﻿  PuzzleFile.cpp
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\PuzzleFile.cpp(9,19): warning C4018:  '<': signed/unsigned mismatch
+﻿  ContinuousCalculator.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(55,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(60,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(89,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(95,10): warning C4018:  '>=': signed/unsigned mismatch
   CourseWork1.vcxproj -> H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe

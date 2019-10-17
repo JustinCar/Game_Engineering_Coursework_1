@@ -11,12 +11,48 @@ UserInterface::~UserInterface()
 
 void UserInterface::programStart() 
 {
-	int puzzleCount = inputPuzzleCount();
-	char method = inputGenerationMethod();
+	int option = readInOrCreateFile();
 
-	generatePuzzles(puzzleCount, method);
+	if (option == 2) 
+	{
+		int puzzleCount = inputPuzzleCount();
+		char method = inputGenerationMethod();
+		generatePuzzles(puzzleCount, method);
+		build15File(option);
+	}
+	else 
+	{
+		build15File(option);
 
-	build15File();
+		for (int i = 0; i < puzzles.size(); i++) 
+		{
+			ContinuousCalculator c(puzzles[i]);
+			c.printInfo();
+		}
+	}
+	
+}
+
+void UserInterface::build15File(int option)
+{
+	PuzzleFile file(puzzles, option);
+}
+
+int UserInterface::readInOrCreateFile()
+{
+	std::cout << "Would you like to read in a 15-File, or create a new one?" << std::endl;
+	std::cout << "Press 1 to read in or 2 to create new" << std::endl;
+
+	int input = 0;
+
+	std::cin >> input;
+	while (input != 1 && input != 2)
+	{
+		std::cout << "Please enter a valid number" << std::endl;
+		std::cin >> input;
+	}
+
+	return input;
 }
 
 void UserInterface::generatePuzzles(int puzzleCount, char generationMethod) 
@@ -108,6 +144,17 @@ void UserInterface::generatePuzzleRandomly(int puzzleDimension)
 	int arraySize = (puzzleDimension * puzzleDimension) - 1; // -1 as we can ignore the empty space
 	int* puzzleArray = new int[arraySize];
 
+	std::vector<int> numberPool;
+
+	int amount = 20;
+	if (puzzleDimension > 4)
+		amount = (puzzleDimension * puzzleDimension) + 5;
+
+	for (int i = 1; i < amount; i++)
+	{
+		numberPool.push_back(i);
+	}
+
 	for (int i = 0; i < arraySize; i++)
 	{
 		puzzleArray[i] = 0;
@@ -115,12 +162,9 @@ void UserInterface::generatePuzzleRandomly(int puzzleDimension)
 
 	for (int i = 0; i < arraySize; i++) 
 	{
-		int number = rand() % 20 + 1; // Random number between one an twenty
-
-		while (!uniqueNumberInPuzzle(puzzleArray, arraySize, number))
-		{
-			int number = rand() % 20 + 1;
-		}
+		int randomIndex = rand() % numberPool.size();
+		int number = numberPool[randomIndex]; // Random number between one an twenty
+		numberPool.erase(numberPool.begin() + randomIndex);
 
 		puzzleArray[i] = number;
 	}
@@ -166,11 +210,8 @@ void UserInterface::generatePuzzleManually(int puzzleDimension)
 	puzzles.push_back(p);
 }
 
-void UserInterface::build15File()
-{
-	PuzzleFile file(puzzles);
-}
 
+// Whether or not the starting configuration is solvable
 bool UserInterface::validPuzzle()
 {
 	return true;
