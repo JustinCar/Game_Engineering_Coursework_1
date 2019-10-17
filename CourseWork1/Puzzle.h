@@ -12,7 +12,6 @@ public:
 	Puzzle(int* originalVal, int dimensionsVal);
 	~Puzzle();
 
-
 	int* getCopy();
 	int* getOriginal() const;
 	int getSize() const;

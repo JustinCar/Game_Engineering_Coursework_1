@@ -9,6 +9,11 @@ BruteForce::BruteForce(Puzzle* puzzleVal)
 	continuousColumns = 0;
 	reverseContinuousColumns = 0;
 
+
+	topRowCount = 0;// Test
+	middleRowCount = 0;// Test
+	bottomRowCount = 0;// Test
+
 	puzzle = puzzleVal;
 }
 
@@ -26,6 +31,11 @@ void BruteForce::printInfo()
 	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
 	std::cout << "Continuous columns: " << continuousColumns << std::endl;
 	std::cout << "Reverse continuous columns: " << reverseContinuousColumns << std::endl;
+
+	// Test
+	/*std::cout << "continuous top row: " << topRowCount << std::endl;
+	std::cout << "continuous middle row: " << middleRowCount << std::endl;
+	std::cout << "continuous bottom row: " << bottomRowCount << std::endl;*/
 }
 
 void BruteForce::printArray()
@@ -98,11 +108,13 @@ bool BruteForce::checkForReverse(int* arr)
 
 void BruteForce::calculateContinuousRows()
 {
-	int iter = 0;
 
 	int dimensions = puzzle->getDimensions();
 	for (int j = 0; j < (puzzle->getDimensions() * 2) + 1; j += dimensions)
 	{
+		
+
+
 		int* row = new int[puzzle->getDimensions()];
 
 		for (int i = 0; i < 3; i++)
@@ -122,7 +134,19 @@ void BruteForce::calculateContinuousRows()
 		}
 
 		if (checkForContinuous(row))
+		{ 
+			if (j == 0)
+				topRowCount++; // Test
+
+			if (j == 3)
+				middleRowCount++; // Test
+
+			if (j == 6)
+				bottomRowCount++; // Test
+
 			continuousRows++;
+		}
+			
 
 		if (checkForReverse(row))
 			reverseContinuousRows++;
@@ -131,7 +155,6 @@ void BruteForce::calculateContinuousRows()
 
 void BruteForce::calculateContinuousColumns()
 {
-	bool finished = false;
 
 	int dimensions = puzzle->getDimensions();
 	for (int i = 0; i < puzzle->getDimensions(); i ++)
@@ -163,76 +186,97 @@ void BruteForce::calculateContinuousColumns()
 	}
 }
 
-void BruteForce::permutations(int k)
-{
-
-	int* indexes = new int[puzzle->getSize()];
-
-	for (int i = 0; i < puzzle->getSize(); i++)
-	{
-		indexes[i] = 0;
-	}
-
-	for (int i = 1; i < k;) 
-	{
-		if (indexes[i] < i)
-		{
-			if ((i & 1) == 1)
-			{
-				swap(i, indexes[i]);
-			}
-			else
-			{
-				swap(i, 0);
-			}
-
-			printArray();
-			if (isLegalPermutation())
-			{
-				calculateContinuousRows();
-				calculateContinuousColumns();
-			}
-
-			indexes[i]++;
-			i = 1;
-		}
-		else
-		{
-			indexes[i++] = 0;
-		}
-	}
-}
+//void BruteForce::permutations(int k)
+//{
+//
+//	int* indexes = new int[k];
+//
+//	for (int i = 0; i < k; i++)
+//	{
+//		indexes[i] = 0;
+//	}
+//
+//			printArray();
+//			if (isLegalPermutation())
+//			{
+//				calculateContinuousRows();
+//				calculateContinuousColumns();
+//			}
+//
+//	for (int i = 1; i < k;) 
+//	{
+//		if (indexes[i] < i)
+//		{
+//			if ((i & 1) == 1)
+//			{
+//				swap(i, indexes[i]);
+//			}
+//			else
+//			{
+//				swap(i, 0);
+//			}
+//
+//			printArray();
+//			if (isLegalPermutation())
+//			{
+//				calculateContinuousRows();
+//				calculateContinuousColumns();
+//			}
+//
+//			indexes[i]++;
+//			i = 1;
+//		}
+//		else
+//		{
+//			indexes[i++] = 0;
+//		}
+//	}
+//}
 
 //void BruteForce::permutations(int k)
 //{
-//	if (k == 1)
-//	{
+//	std::sort(puzzle->getCopy(), puzzle->getCopy() + puzzle->getSize());
+//
+//	do {
 //		printArray();
 //		if (isLegalPermutation())
 //		{
 //			calculateContinuousRows();
 //			calculateContinuousColumns();
 //		}
-//
-//		//Finished
-//	}
-//	else
-//	{
-//		permutations(k - 1);
-//
-//		for (int i = 0; i < k - 1; i++)
-//		{
-//			if ((k % 2) == 0)
-//			{
-//				swap(i, k - 1);
-//			}
-//			else
-//			{
-//				swap(0, k - 1);
-//			}
-//
-//			permutations(k - 1);
-//		}
-//	}
+//	} while (std::next_permutation(puzzle->getCopy(), puzzle->getCopy() + puzzle->getSize()));
 //}
+
+void BruteForce::permutations(int k)
+{
+	if (k == 1)
+	{
+		//printArray();
+		if (isLegalPermutation())
+		{
+			calculateContinuousRows();
+			calculateContinuousColumns();
+		}
+
+		//Finished
+	}
+	else
+	{
+		permutations(k - 1);
+
+		for (int i = 0; i < k - 1; i++)
+		{
+			if ((k % 2) == 0)
+			{
+				swap(i, k - 1);
+			}
+			else
+			{
+				swap(0, k - 1);
+			}
+
+			permutations(k - 1);
+		}
+	}
+}
 

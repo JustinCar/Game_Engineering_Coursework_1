@@ -1,6 +1,7 @@
 #pragma once
-#include <iostream>
 #include "Puzzle.h"
+#include <algorithm> 
+
 class BruteForce
 {
 protected:
@@ -9,6 +10,10 @@ protected:
 	int reverseContinuousRows;
 	int continuousColumns;
 	int reverseContinuousColumns;
+
+	int topRowCount;// Test
+	int middleRowCount;// Test
+	int bottomRowCount;// Test
 
 	Puzzle* puzzle;
 

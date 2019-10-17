@@ -1,2 +1,3 @@
-﻿  BruteForce.cpp
+﻿  PuzzleFile.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\PuzzleFile.cpp(9,19): warning C4018:  '<': signed/unsigned mismatch
   CourseWork1.vcxproj -> H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe
