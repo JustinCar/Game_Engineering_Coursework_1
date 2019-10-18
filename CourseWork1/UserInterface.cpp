@@ -24,6 +24,8 @@ void UserInterface::programStart()
 	{
 		build15File(option);
 
+		std::vector<Solution*> solutions;
+
 		for (int i = 0; i < puzzles.size(); i++) 
 		{
 
@@ -34,8 +36,13 @@ void UserInterface::programStart()
 			b.printInfo();*/
 
 			ContinuousCalculator c(puzzles[i]);
+
+			Solution* s = new Solution(puzzles[i], c.getContainer());
+			solutions.push_back(s);
 			printInfo(c.getContainer());
 		}
+
+		buildSolutionFile(solutions);
 	}
 }
 
@@ -52,6 +59,11 @@ void UserInterface::printInfo(ContinuousCount& result)
 void UserInterface::build15File(int option)
 {
 	PuzzleFile file(puzzles, option);
+}
+
+void UserInterface::buildSolutionFile(std::vector<Solution*> solutions)
+{
+	SolutionFile file(solutions);
 }
 
 int UserInterface::readInOrCreateFile()
@@ -157,6 +169,8 @@ bool UserInterface::uniqueNumberInPuzzle(int* puzzleArray, int arraySize, int nu
 
 void UserInterface::generatePuzzleRandomly(int puzzleDimension)
 {
+	srand(time(NULL)); // New seed to get different numbers
+
 	int arraySize = (puzzleDimension * puzzleDimension) - 1; // -1 as we can ignore the empty space
 	int* puzzleArray = new int[arraySize];
 

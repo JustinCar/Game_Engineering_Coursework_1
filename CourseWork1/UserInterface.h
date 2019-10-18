@@ -7,6 +7,9 @@
 #include "PuzzleFile.h"
 #include "ContinuousCalculator.h"
 #include "ContinuousCount.h"
+#include "Solution.h"
+#include "SolutionFile.h"
+#include <ctime>
 
 class UserInterface
 {
@@ -19,6 +22,7 @@ public:
 	void programStart();
 	int readInOrCreateFile();
 	void printInfo(ContinuousCount& result);
+	void buildSolutionFile(std::vector<Solution*> solutions);
 
 	int inputPuzzleCount();
 	char inputGenerationMethod();

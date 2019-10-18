@@ -1,0 +1,47 @@
+5
+14 19 5 
+4 10 17 
+6 13 
+row = 1200
+column = 1200
+reverse row = 1200
+reverse column = 1200
+
+
+17 3 2 6 
+12 9 15 16 
+10 7 8 4 
+11 14 1 
+row = 2514758400
+column = 2514758400
+reverse row = 2514758400
+reverse column = 2514758400
+
+
+17 3 2 
+6 12 9 
+15 16 
+row = 1200
+column = 1200
+reverse row = 1200
+reverse column = 1200
+
+
+2 6 9 4 
+7 17 3 18 
+12 13 19 14 
+16 1 15 
+row = 2275257600
+column = 2275257600
+reverse row = 2275257600
+reverse column = 2275257600
+
+
+2 6 9 
+4 7 17 
+3 18 
+row = 1560
+column = 1560
+reverse row = 1560
+reverse column = 1560
+

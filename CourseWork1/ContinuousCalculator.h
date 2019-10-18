@@ -3,6 +3,7 @@
 #include <algorithm> 
 #include <vector>
 #include "ContinuousCount.h"
+#include "Solution.h"
 
 class ContinuousCalculator
 {
