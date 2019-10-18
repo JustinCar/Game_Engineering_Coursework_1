@@ -34,10 +34,19 @@ void UserInterface::programStart()
 			b.printInfo();*/
 
 			ContinuousCalculator c(puzzles[i]);
-			c.printInfo();
+			printInfo(c.getContainer());
 		}
 	}
-	
+}
+
+void UserInterface::printInfo(ContinuousCount& result)
+{
+	std::cout << "\n\n FORMULA IMPLEMENTATION" << std::endl;
+	std::cout << "Continuous rows: " << result.getContinuousRows() << std::endl;
+	std::cout << "Reverse continuous rows: " << result.getReverseContinuousRows() << std::endl;
+	std::cout << "Continuous columns: " << result.getContinuousColumns() << std::endl;
+	std::cout << "Reverse continuous columns: " << result.getReverseContinuousColumns() << std::endl;
+
 }
 
 void UserInterface::build15File(int option)
@@ -228,9 +237,4 @@ bool UserInterface::validNumber(int x)
 {
 	if (x <= 0)
 		return false;
-}
-
-void UserInterface::doJobs()
-{
-
 }

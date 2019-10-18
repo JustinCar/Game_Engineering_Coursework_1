@@ -6,21 +6,23 @@ ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal)
 
 	puzzle = puzzleVal;
 
-	//int occursions = numberOfOccursions();
-	//int occursionsBottomRow = numberOfOccursionsBottomRow();
+	unsigned long long occursions = numberOfOccursions();
+	unsigned long long occursionsBottomRow = numberOfOccursionsBottomRow();
 
-	//int continous = continuousNumberCountEqualToDimension();
-	//int continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
+	unsigned long long continous = continuousNumberCountEqualToDimension();
+	unsigned long long continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
 
-	//int i = 0;
+	unsigned long long numberOfContinuous = occursions * continous;
+	unsigned long long  numberOfContinuousBottomRow = occursionsBottomRow * continousBottomRow;
 
-	int result = (numberOfOccursions() * continuousNumberCountEqualToDimension()) +
-		(numberOfOccursionsBottomRow() * continuousNumberCountEqualToDimensionMinusOne());
+	unsigned long long  totalNumberOfContinuous = numberOfContinuous + numberOfContinuousBottomRow;
 
-	continuousRows = result;
-	reverseContinuousRows = result;
-	continuousColumns = result;
-	reverseContinuousColumns = result;
+	container = new ContinuousCount(totalNumberOfContinuous, totalNumberOfContinuous, totalNumberOfContinuous, totalNumberOfContinuous);
+}
+
+ContinuousCount& ContinuousCalculator::getContainer() const
+{
+	return *container;
 }
 
 int ContinuousCalculator::factorial(int n)
@@ -106,25 +108,4 @@ int ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
 	}
 
 	return continuousCount;
-}
-
-void ContinuousCalculator::printInfo()
-{
-	std::cout << "\n\n FORMULA IMPLEMENTATION" << std::endl;
-	std::cout << "Continuous rows: " << continuousRows << std::endl;
-	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
-	std::cout << "Continuous columns: " << continuousColumns << std::endl;
-	std::cout << "Reverse continuous columns: " << reverseContinuousColumns << std::endl;
-
-}
-
-void ContinuousCalculator::printArray()
-{
-
-	for (int i = 0; i < puzzle->getSize(); i++)
-	{
-		std::cout << puzzle->getCopy()[i] << std::endl;
-	}
-
-	std::cout << "\n\n\n\n" << std::endl;
 }

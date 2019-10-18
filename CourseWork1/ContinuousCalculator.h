@@ -2,18 +2,12 @@
 #include "Puzzle.h"
 #include <algorithm> 
 #include <vector>
+#include "ContinuousCount.h"
 
 class ContinuousCalculator
 {
 protected:
-	int continuousRows;
-	int reverseContinuousRows;
-	int continuousColumns;
-	int reverseContinuousColumns;
-
-	int topRowCount;// Test
-	int middleRowCount;// Test
-	int bottomRowCount;// Test
+	ContinuousCount* container;
 
 	Puzzle* puzzle;
 
@@ -28,10 +22,6 @@ public:
 
 	int factorial(int n);
 
-	void printInfo();
-
-
-
-	void printArray(); // Testing
+	ContinuousCount& getContainer() const;
 };
 

@@ -6,6 +6,7 @@
 #include <vector>
 #include "PuzzleFile.h"
 #include "ContinuousCalculator.h"
+#include "ContinuousCount.h"
 
 class UserInterface
 {
@@ -17,6 +18,7 @@ public:
 	~UserInterface();
 	void programStart();
 	int readInOrCreateFile();
+	void printInfo(ContinuousCount& result);
 
 	int inputPuzzleCount();
 	char inputGenerationMethod();
@@ -29,8 +31,5 @@ public:
 	bool uniqueNumberInPuzzle(int* puzzleArray, int arraySize, int number);
 	bool validPuzzle(); // Check for parity, overlapping numbers, numbers within range
 	bool validNumber(int x);
-
-
-	void doJobs(); // Do each job on a different thread?
 };
 

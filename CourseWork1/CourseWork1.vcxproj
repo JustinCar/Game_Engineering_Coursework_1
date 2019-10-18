@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="BruteForce.cpp" />
     <ClCompile Include="ContinuousCalculator.cpp" />
+    <ClCompile Include="ContinuousCount.cpp" />
     <ClCompile Include="Puzzle.cpp" />
     <ClCompile Include="PuzzleFile.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="ContinuousCalculator.h" />
+    <ClInclude Include="ContinuousCount.h" />
     <ClInclude Include="Puzzle.h" />
     <ClInclude Include="PuzzleFile.h" />
     <ClInclude Include="UserInterface.h" />
