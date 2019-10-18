@@ -2,9 +2,17 @@
 
 ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal)
 {
-	int i = 0;
+	
 
 	puzzle = puzzleVal;
+
+	//int occursions = numberOfOccursions();
+	//int occursionsBottomRow = numberOfOccursionsBottomRow();
+
+	//int continous = continuousNumberCountEqualToDimension();
+	//int continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
+
+	//int i = 0;
 
 	int result = (numberOfOccursions() * continuousNumberCountEqualToDimension()) +
 		(numberOfOccursionsBottomRow() * continuousNumberCountEqualToDimensionMinusOne());
@@ -25,7 +33,7 @@ int ContinuousCalculator::factorial(int n)
 
 int ContinuousCalculator::numberOfOccursions()
 {
-	return (factorial((puzzle->getSize() - puzzle->getDimensions())) / 2) * puzzle->getDimensions() - 1;
+	return (factorial((puzzle->getSize() - puzzle->getDimensions())) / 2) * (puzzle->getDimensions() - 1);
 }
 
 int ContinuousCalculator::numberOfOccursionsBottomRow()
@@ -43,27 +51,20 @@ int ContinuousCalculator::continuousNumberCountEqualToDimension()
 
 	std::sort(arr.begin(), arr.begin() + arr.size());
 
-	//for (std::vector<int>::iterator it = arr.begin(); it != arr.end(); ++it)
-	//{
-	//	for (std::vector<int>::iterator it2 = it + 1; it2 != it2 + 3; ++it2)
-	//	{
-	//		/* std::cout << *it; ... */
-	//	}
-	//}
+
 	int continuousCount = 0;
 
-	for (int i = 0; i < arr.size(); i++)
+	for (int i = 1; i < arr.size(); i++)
 	{
 		int counter = 0;
-		for (int j = i + 1; j < i + (puzzle->getDimensions() - 1); j++)
+		for (int j = i; j < (i + (puzzle->getDimensions() - 1)); j++)
 		{
 			if (j >= arr.size())
 				break;
 
-			if (arr[j] == (arr[j - 1] - 1))
+			if ((arr[j] - 1) == (arr[j - 1]))
 				counter++;
-			else
-				break;
+		
 		}
 
 		if (counter == puzzle->getDimensions() - 1)
@@ -86,16 +87,15 @@ int ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
 
 	int continuousCount = 0;
 
-	for (int i = 0; i < arr.size(); i++)
+	for (int i = 1; i < arr.size(); i++)
 	{
 		int counter = 0;
-		for (int j = i + 1; j < i + (puzzle->getDimensions() - 2); j++)
+		for (int j = i; j < (i + (puzzle->getDimensions() - 2)); j++)
 		{
-
 			if (j >= arr.size())
 				break;
 
-			if (arr[j] == (arr[j - 1] - 1))
+			if ((arr[j] - 1) == arr[j - 1])
 				counter++;
 			else
 				break;
@@ -110,7 +110,7 @@ int ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
 
 void ContinuousCalculator::printInfo()
 {
-	std::cout << "\n\n" << std::endl;
+	std::cout << "\n\n FORMULA IMPLEMENTATION" << std::endl;
 	std::cout << "Continuous rows: " << continuousRows << std::endl;
 	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
 	std::cout << "Continuous columns: " << continuousColumns << std::endl;

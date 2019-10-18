@@ -9,11 +9,6 @@ BruteForce::BruteForce(Puzzle* puzzleVal)
 	continuousColumns = 0;
 	reverseContinuousColumns = 0;
 
-
-	topRowCount = 0;// Test
-	middleRowCount = 0;// Test
-	bottomRowCount = 0;// Test
-
 	puzzle = puzzleVal;
 }
 
@@ -26,7 +21,7 @@ void BruteForce::swap(int pos1, int pos2)
 
 void BruteForce::printInfo()
 {
-	std::cout << "\n\n" << std::endl;
+	std::cout << "\n\n BRUTE FORCE IMPLEMENTATION" << std::endl;
 	std::cout << "Continuous rows: " << continuousRows << std::endl;
 	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
 	std::cout << "Continuous columns: " << continuousColumns << std::endl;
@@ -135,14 +130,6 @@ void BruteForce::calculateContinuousRows()
 
 		if (checkForContinuous(row))
 		{ 
-			if (j == 0)
-				topRowCount++; // Test
-
-			if (j == 3)
-				middleRowCount++; // Test
-
-			if (j == 6)
-				bottomRowCount++; // Test
 
 			continuousRows++;
 		}

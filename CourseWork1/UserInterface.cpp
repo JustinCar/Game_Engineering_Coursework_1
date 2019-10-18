@@ -26,6 +26,13 @@ void UserInterface::programStart()
 
 		for (int i = 0; i < puzzles.size(); i++) 
 		{
+
+			/*BruteForce b(puzzles[i]);
+
+			b.permutations(8);
+
+			b.printInfo();*/
+
 			ContinuousCalculator c(puzzles[i]);
 			c.printInfo();
 		}

@@ -1,6 +1,6 @@
-﻿  ContinuousCalculator.cpp
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(55,20): warning C4018:  '<': signed/unsigned mismatch
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(60,10): warning C4018:  '>=': signed/unsigned mismatch
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(89,20): warning C4018:  '<': signed/unsigned mismatch
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(95,10): warning C4018:  '>=': signed/unsigned mismatch
+﻿  UserInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(5,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(8,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(27,21): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(231): warning C4715:  'UserInterface::validNumber': not all control paths return a value
   CourseWork1.vcxproj -> H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe

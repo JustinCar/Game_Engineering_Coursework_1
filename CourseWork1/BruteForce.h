@@ -11,10 +11,6 @@ protected:
 	int continuousColumns;
 	int reverseContinuousColumns;
 
-	int topRowCount;// Test
-	int middleRowCount;// Test
-	int bottomRowCount;// Test
-
 	Puzzle* puzzle;
 
 public:
