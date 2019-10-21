@@ -4,9 +4,6 @@ UserInterface::~UserInterface()
 {
 	for (int i = 0; i < puzzles.size(); i++)
 		delete puzzles[i];
-
-	for (int i = 0; i < jobs.size(); i++)
-		delete jobs[i];
 }
 
 void UserInterface::programStart() 
@@ -28,13 +25,6 @@ void UserInterface::programStart()
 
 		for (int i = 0; i < puzzles.size(); i++) 
 		{
-
-			/*BruteForce b(puzzles[i]);
-
-			b.permutations(8);
-
-			b.printInfo();*/
-
 			ContinuousCalculator c(puzzles[i]);
 
 			Solution* s = new Solution(puzzles[i], c.getContainer());
@@ -64,6 +54,9 @@ void UserInterface::build15File(int option)
 void UserInterface::buildSolutionFile(std::vector<Solution*> solutions)
 {
 	SolutionFile file(solutions);
+
+	for (int i = 0; i < solutions.size(); i++)
+		delete solutions[i];
 }
 
 int UserInterface::readInOrCreateFile()
@@ -169,21 +162,20 @@ bool UserInterface::uniqueNumberInPuzzle(int* puzzleArray, int arraySize, int nu
 
 void UserInterface::generatePuzzleRandomly(int puzzleDimension)
 {
-	srand(time(NULL)); // New seed to get different numbers
-
-	int arraySize = (puzzleDimension * puzzleDimension) - 1; // -1 as we can ignore the empty space
+	int arraySize = (puzzleDimension * puzzleDimension - 1); // -1 as we can ignore the empty space
 	int* puzzleArray = new int[arraySize];
-
-	std::vector<int> numberPool;
+	//std::vector<int> numberPool;
 
 	int amount = 20;
 	if (puzzleDimension > 4)
 		amount = (puzzleDimension * puzzleDimension) + 5;
 
-	for (int i = 1; i < amount; i++)
-	{
-		numberPool.push_back(i);
-	}
+
+	std::vector<bool> inserted;
+	for (int i = 0; i <= amount; i++)
+		inserted.push_back(false);
+
+	Dist distribution(1, amount);
 
 	for (int i = 0; i < arraySize; i++)
 	{
@@ -192,17 +184,42 @@ void UserInterface::generatePuzzleRandomly(int puzzleDimension)
 
 	for (int i = 0; i < arraySize; i++) 
 	{
-		int randomIndex = rand() % numberPool.size();
-		int number = numberPool[randomIndex]; // Random number between one an twenty
-		numberPool.erase(numberPool.begin() + randomIndex);
-
-		puzzleArray[i] = number;
+		int randomNumber;
+		do {
+			randomNumber = distribution(generator);
+		} while (inserted[randomNumber]);
+		inserted[randomNumber] = true;
+		puzzleArray[i] = randomNumber;
 	}
 
-	std::cout << "Puzzle created" << std::endl;
-
 	Puzzle* p = new Puzzle(puzzleArray, puzzleDimension);
-	puzzles.push_back(p);
+
+	if (!uniquePuzzle(p)) {
+		delete p;
+		generatePuzzleRandomly(puzzleDimension);
+	} else {
+		std::cout << "Puzzle created" << std::endl;
+		puzzles.push_back(p);
+	}
+}
+
+bool UserInterface::uniquePuzzle(Puzzle* p)
+{
+	if (puzzles.size() == 0)
+		return true;
+
+	for (int i = 0; i < puzzles.size(); i++) 
+	{
+		for (int j = 0; j < puzzles[i]->getSize(); j++) 
+		{
+			if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
+				return false;
+		}
+	}
+
+	int i = 0;
+
+	return true;
 }
 
 void UserInterface::generatePuzzleManually(int puzzleDimension)

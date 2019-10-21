@@ -1,10 +1,7 @@
 #include "ContinuousCalculator.h"
 
-ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal)
+ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal) : puzzle (puzzleVal)
 {
-	
-
-	puzzle = puzzleVal;
 
 	unsigned long long occursions = numberOfOccursions();
 	unsigned long long occursionsBottomRow = numberOfOccursionsBottomRow();

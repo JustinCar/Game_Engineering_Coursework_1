@@ -1,15 +1,13 @@
 #include "BruteForce.h"
 
 
-BruteForce::BruteForce(Puzzle* puzzleVal)
+BruteForce::BruteForce(Puzzle* puzzleVal) : permutationCounter(0),
+											continuousRows(0),
+											reverseContinuousRows(0),
+											continuousColumns(0),
+											reverseContinuousColumns(0), 
+											puzzle(puzzleVal)
 {
-	permutationCounter = 0;
-	continuousRows = 0;
-	reverseContinuousRows = 0;
-	continuousColumns = 0;
-	reverseContinuousColumns = 0;
-
-	puzzle = puzzleVal;
 }
 
 void BruteForce::swap(int pos1, int pos2)

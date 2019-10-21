@@ -17,6 +17,7 @@
 
 int main()
 {
+	srand(time(NULL));
 	bool runAgain = true;
 
 	while (runAgain)

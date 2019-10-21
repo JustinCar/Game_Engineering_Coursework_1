@@ -1,47 +1,30 @@
-5
-14 19 5 
-4 10 17 
-6 13 
-row = 1200
-column = 1200
-reverse row = 1200
-reverse column = 1200
+3
+13 3 15 
+6 5 12 
+10 19 
+row = 720
+column = 720
+reverse row = 720
+reverse column = 720
 
 
-17 3 2 6 
-12 9 15 16 
-10 7 8 4 
-11 14 1 
-row = 2514758400
-column = 2514758400
-reverse row = 2514758400
-reverse column = 2514758400
+4 16 6 1 
+7 20 5 18 
+10 17 14 12 
+13 19 8 
+row = 1916006400
+column = 1916006400
+reverse row = 1916006400
+reverse column = 1916006400
 
 
-17 3 2 
-6 12 9 
-15 16 
-row = 1200
-column = 1200
-reverse row = 1200
-reverse column = 1200
-
-
-2 6 9 4 
-7 17 3 18 
-12 13 19 14 
-16 1 15 
-row = 2275257600
-column = 2275257600
-reverse row = 2275257600
-reverse column = 2275257600
-
-
-2 6 9 
-4 7 17 
-3 18 
-row = 1560
-column = 1560
-reverse row = 1560
-reverse column = 1560
+27 4 23 24 1 
+10 30 15 5 16 
+28 17 12 11 25 
+20 29 13 19 8 
+18 26 3 21 
+row = 18446744064733872128
+column = 18446744064733872128
+reverse row = 18446744064733872128
+reverse column = 18446744064733872128
 

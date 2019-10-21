@@ -3,12 +3,12 @@
 ContinuousCount::ContinuousCount(unsigned long long continuousRowsVal,
 	unsigned long long  reverseContinuousRowsVal,
 	unsigned long long continuousColumnsVal,
-	unsigned long long reverseContinuousColumnsVal)
+	unsigned long long reverseContinuousColumnsVal) : continuousRows(continuousRowsVal),
+														reverseContinuousRows(reverseContinuousRowsVal),
+														continuousColumns(continuousColumnsVal),
+														reverseContinuousColumns(reverseContinuousColumnsVal)
 {
-	continuousRows = continuousRowsVal;
-	reverseContinuousRows = reverseContinuousRowsVal;
-	continuousColumns = continuousColumnsVal;
-	reverseContinuousColumns = reverseContinuousColumnsVal;
+
 }
 
 unsigned long long ContinuousCount::getContinuousRows() const

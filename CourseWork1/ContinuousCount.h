@@ -3,7 +3,7 @@ class ContinuousCount
 {
 protected:
 	unsigned long long continuousRows;
-	unsigned long long  reverseContinuousRows;
+	unsigned long long reverseContinuousRows;
 	unsigned long long continuousColumns;
 	unsigned long long reverseContinuousColumns;
 public:

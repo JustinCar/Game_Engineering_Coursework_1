@@ -1,13 +1,9 @@
 #include "Puzzle.h"
 
-Puzzle::Puzzle(int* originalVal, int dimensionsVal)
+Puzzle::Puzzle(int* originalVal, int dimensionsVal) : original(originalVal), dimensions(dimensionsVal)
 {
 	size = (dimensionsVal * dimensionsVal) - 1;
-	dimensions = dimensionsVal;
-
-	original = originalVal;
 	copy = new int[size];
-
 
 	for (int i = 0; i < size; i++)
 	{

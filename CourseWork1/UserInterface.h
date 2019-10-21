@@ -10,12 +10,14 @@
 #include "Solution.h"
 #include "SolutionFile.h"
 #include <ctime>
+#include <random>
 
 class UserInterface
 {
 protected:
-	std::vector<BruteForce*> jobs;
 	std::vector<Puzzle*> puzzles;
+	std::default_random_engine generator;
+	using Dist = std::uniform_int_distribution<int>;
 
 public:
 	~UserInterface();
@@ -35,5 +37,6 @@ public:
 	bool uniqueNumberInPuzzle(int* puzzleArray, int arraySize, int number);
 	bool validPuzzle(); // Check for parity, overlapping numbers, numbers within range
 	bool validNumber(int x);
+	bool uniquePuzzle(Puzzle* p);
 };
 
