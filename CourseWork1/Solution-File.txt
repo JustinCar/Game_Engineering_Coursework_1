@@ -1,4 +1,4 @@
-3
+6
 13 3 15 
 6 5 12 
 10 19 
@@ -8,23 +8,47 @@ reverse row = 720
 reverse column = 720
 
 
-4 16 6 1 
-7 20 5 18 
-10 17 14 12 
-13 19 8 
-row = 1916006400
-column = 1916006400
-reverse row = 1916006400
-reverse column = 1916006400
+4 16 6 
+1 7 20 
+5 18 
+row = 1320
+column = 1320
+reverse row = 1320
+reverse column = 1320
 
 
-27 4 23 24 1 
-10 30 15 5 16 
-28 17 12 11 25 
-20 29 13 19 8 
-18 26 3 21 
-row = 18446744064733872128
-column = 18446744064733872128
-reverse row = 18446744064733872128
-reverse column = 18446744064733872128
+7 10 4 
+20 17 14 
+1 12 
+row = 0
+column = 0
+reverse row = 0
+reverse column = 0
+
+
+20 19 1 
+15 16 18 
+4 10 
+row = 1200
+column = 1200
+reverse row = 1200
+reverse column = 1200
+
+
+12 15 11 
+9 6 7 
+3 1 
+row = 720
+column = 720
+reverse row = 720
+reverse column = 720
+
+
+19 6 18 
+12 4 15 
+13 16 
+row = 1080
+column = 1080
+reverse row = 1080
+reverse column = 1080
 

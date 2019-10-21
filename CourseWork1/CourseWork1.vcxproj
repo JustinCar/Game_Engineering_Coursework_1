@@ -126,22 +126,30 @@
     <ClCompile Include="BruteForce.cpp" />
     <ClCompile Include="ContinuousCalculator.cpp" />
     <ClCompile Include="ContinuousCount.cpp" />
+    <ClCompile Include="ProgramManager.cpp" />
     <ClCompile Include="Puzzle.cpp" />
-    <ClCompile Include="PuzzleFile.cpp" />
+    <ClCompile Include="ReadFileInterface.cpp" />
+    <ClCompile Include="ReadPuzzleFile.cpp" />
     <ClCompile Include="Solution.cpp" />
     <ClCompile Include="SolutionFile.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="UserInterface.cpp" />
+    <ClCompile Include="WriteFileInterface.cpp" />
+    <ClCompile Include="WritePuzzleFile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BruteForce.h" />
     <ClInclude Include="ContinuousCalculator.h" />
     <ClInclude Include="ContinuousCount.h" />
+    <ClInclude Include="ProgramManager.h" />
     <ClInclude Include="Puzzle.h" />
-    <ClInclude Include="PuzzleFile.h" />
+    <ClInclude Include="ReadFileInterface.h" />
+    <ClInclude Include="ReadPuzzleFile.h" />
     <ClInclude Include="Solution.h" />
     <ClInclude Include="SolutionFile.h" />
     <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="WriteFileInterface.h" />
+    <ClInclude Include="WritePuzzleFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

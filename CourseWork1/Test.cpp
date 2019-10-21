@@ -1,4 +1,4 @@
-#include "UserInterface.h"
+#include "ProgramManager.h"
 
 //int main() 
 //{
@@ -17,27 +17,9 @@
 
 int main()
 {
-	srand(time(NULL));
-	bool runAgain = true;
 
-	while (runAgain)
-	{
-		UserInterface interface;
-		interface.programStart();
-
-		std::cout << "Would you like to run the program again? Enter y for yes or n for no" << std::endl;
-
-		char input;
-		std::cin >> input;
-		while (input != 'y' && input != 'n')
-		{
-			std::cout << "Please enter a valid letter" << std::endl;
-			std::cin >> input;
-		}
-
-		if (input == 'n')
-			runAgain = false;
-	}
+	ProgramManager manager;
+	manager.run();
 
 	std::cin.get();
 	return 0;
