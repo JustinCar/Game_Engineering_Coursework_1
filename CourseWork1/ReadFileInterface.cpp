@@ -16,9 +16,6 @@ void ReadFileInterface::run()
 	}
 
 	buildSolutionFile(solutions);
-
-	for (int i = 0; i < puzzles.size(); i++)
-		delete puzzles[i];
 }
 
 void ReadFileInterface::printInfo(ContinuousCount& result)

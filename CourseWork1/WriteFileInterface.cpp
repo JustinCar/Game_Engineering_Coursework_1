@@ -6,9 +6,6 @@ void WriteFileInterface::run()
 	char method = inputGenerationMethod();
 	generatePuzzles(puzzleCount, method);
 	write15File();
-
-	for (int i = 0; i < puzzles.size(); i++)
-		delete puzzles[i];
 }
 
 void WriteFileInterface::write15File()
@@ -27,6 +24,8 @@ void WriteFileInterface::generatePuzzles(int puzzleCount, char generationMethod)
 		else
 			generatePuzzleManually(dimensions);
 	}
+
+	int i = 0;
 }
 
 int WriteFileInterface::inputPuzzleDimension()
@@ -104,18 +103,17 @@ void WriteFileInterface::generatePuzzleRandomly(int puzzleDimension)
 {
 	int arraySize = (puzzleDimension * puzzleDimension - 1); // -1 as we can ignore the empty space
 	int* puzzleArray = new int[arraySize];
-	//std::vector<int> numberPool;
 
 	int amount = 20;
 	if (puzzleDimension > 4)
 		amount = (puzzleDimension * puzzleDimension) + 5;
 
+	std::vector<int> numberPool;
 
-	std::vector<bool> inserted;
-	for (int i = 0; i <= amount; i++)
-		inserted.push_back(false);
-
-	Dist distribution(1, amount);
+	for (int i = 1; i < amount; i++)
+	{
+		numberPool.push_back(i);
+	}
 
 	for (int i = 0; i < arraySize; i++)
 	{
@@ -124,17 +122,19 @@ void WriteFileInterface::generatePuzzleRandomly(int puzzleDimension)
 
 	for (int i = 0; i < arraySize; i++)
 	{
-		int randomNumber;
-		do {
-			randomNumber = distribution(generator);
-		} while (inserted[randomNumber]);
-		inserted[randomNumber] = true;
-		puzzleArray[i] = randomNumber;
+
+		Dist distribution(0, numberPool.size() - 1);
+
+		int randomIndex = distribution(generator);
+		int number = numberPool[randomIndex]; // Random number between one an twenty
+		numberPool.erase(numberPool.begin() + randomIndex);
+		puzzleArray[i] = number;
 	}
 
 	Puzzle* p = new Puzzle(puzzleArray, puzzleDimension);
 
-	if (!uniquePuzzle(p)) {
+	if (!uniquePuzzle(p)) 
+	{
 		delete p;
 		generatePuzzleRandomly(puzzleDimension);
 	}
@@ -151,10 +151,21 @@ bool WriteFileInterface::uniquePuzzle(Puzzle* p)
 
 	for (int i = 0; i < puzzles.size(); i++)
 	{
-		for (int j = 0; j < puzzles[i]->getSize(); j++)
+		if (puzzles[i]->getSize() <= p->getSize())
 		{
-			if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
-				return false;
+			for (int j = 0; j < puzzles[i]->getSize(); j++)
+			{
+				if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
+					return false;
+			}
+		}
+		else 
+		{
+			for (int j = 0; j < p->getSize(); j++)
+			{
+				if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
+					return false;
+			}
 		}
 	}
 
@@ -196,13 +207,6 @@ void WriteFileInterface::generatePuzzleManually(int puzzleDimension)
 
 	Puzzle* p = new Puzzle(puzzleArray, puzzleDimension);
 	puzzles.push_back(p);
-}
-
-
-// Whether or not the starting configuration is solvable
-bool WriteFileInterface::validPuzzle()
-{
-	return true;
 }
 
 bool WriteFileInterface::validNumber(int x)

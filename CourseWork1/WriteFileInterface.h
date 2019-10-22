@@ -18,7 +18,6 @@ public:
 	void write15File();
 
 	bool uniqueNumberInPuzzle(int* puzzleArray, int arraySize, int number);
-	bool validPuzzle(); // Check for parity, overlapping numbers, numbers within range
 	bool validNumber(int x);
 	bool uniquePuzzle(Puzzle* p);
 };
