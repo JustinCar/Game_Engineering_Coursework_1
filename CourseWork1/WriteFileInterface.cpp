@@ -151,25 +151,9 @@ bool WriteFileInterface::uniquePuzzle(Puzzle* p)
 
 	for (int i = 0; i < puzzles.size(); i++)
 	{
-		if (puzzles[i]->getSize() <= p->getSize())
-		{
-			for (int j = 0; j < puzzles[i]->getSize(); j++)
-			{
-				if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
-					return false;
-			}
-		}
-		else 
-		{
-			for (int j = 0; j < p->getSize(); j++)
-			{
-				if (puzzles[i]->getCopy()[j] == p->getCopy()[j])
-					return false;
-			}
-		}
+		if (puzzles[i] == p)
+			return false;
 	}
-
-	int i = 0;
 
 	return true;
 }

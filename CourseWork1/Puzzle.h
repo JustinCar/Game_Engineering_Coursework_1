@@ -12,6 +12,8 @@ public:
 	Puzzle(int* originalVal, int dimensionsVal);
 	~Puzzle();
 
+	bool operator==(Puzzle& other);
+
 	int* getCopy();
 	int* getOriginal() const;
 	int getSize() const;

@@ -20,6 +20,28 @@ Puzzle::~Puzzle()
 	delete[] copy;
 }
 
+bool Puzzle::operator==(Puzzle& other)
+{
+	if (other.getSize() <= size)
+	{
+		for (int j = 0; j < other.getSize(); j++)
+		{
+			if (other.getCopy()[j] != copy[j])
+				return false;
+		}
+	}
+	else
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (other.getCopy()[j] != copy[j])
+				return false;
+		}
+	}
+
+	return true;
+}
+
 int* Puzzle::getCopy()
 {
 	return copy;
