@@ -1,7 +1,21 @@
-﻿  ProgramManager.cpp
+﻿  ContinuousCalculator.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(56,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(61,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(89,20): warning C4018:  '<': signed/unsigned mismatch
+  ProgramManager.cpp
+  ReadFileInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(94,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(9,20): warning C4018:  '<': signed/unsigned mismatch
+  Solution.cpp
+  SolutionFile.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(40,20): warning C4018:  '<': signed/unsigned mismatch
   Test.cpp
+  UserInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\SolutionFile.cpp(14,20): warning C4018:  '<': signed/unsigned mismatch
   WriteFileInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(10,20): warning C4018:  '<': signed/unsigned mismatch
   Generating Code...
 H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\WriteFileInterface.cpp(152,20): warning C4018:  '<': signed/unsigned mismatch
 H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\WriteFileInterface.cpp(216): warning C4715:  'WriteFileInterface::validNumber': not all control paths return a value
+  LINK : H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe not found or not built by the last incremental link; performing full link
   CourseWork1.vcxproj -> H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe
