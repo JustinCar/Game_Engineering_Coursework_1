@@ -43,18 +43,18 @@ unsigned long long ContinuousCount::getReverseContinuousColumns() const
 	return reverseContinuousColumns;
 }
 
-unsigned long long ContinuousCount::getTotal2PartialForStartingConfig() const
+int ContinuousCount::getTotal2PartialForStartingConfig() const
 {
 	return total2PartialForStartingConfig;
 }
 
 
-unsigned long long ContinuousCount::getTotal3PartialForStartingConfig() const
+int ContinuousCount::getTotal3PartialForStartingConfig() const
 {
 	return total3PartialForStartingConfig;
 }
 
-unsigned long long ContinuousCount::getTotal4PartialForStartingConfig() const
+int ContinuousCount::getTotal4PartialForStartingConfig() const
 {
 	return total4PartialForStartingConfig;
 }

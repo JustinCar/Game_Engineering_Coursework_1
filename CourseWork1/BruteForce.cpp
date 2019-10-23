@@ -106,8 +106,6 @@ void BruteForce::calculateContinuousRows()
 	for (int j = 0; j < (puzzle->getDimensions() * 2) + 1; j += dimensions)
 	{
 		
-
-
 		int* row = new int[puzzle->getDimensions()];
 
 		for (int i = 0; i < 3; i++)
@@ -127,10 +125,7 @@ void BruteForce::calculateContinuousRows()
 		}
 
 		if (checkForContinuous(row))
-		{ 
-
 			continuousRows++;
-		}
 			
 
 		if (checkForReverse(row))

@@ -19,7 +19,7 @@ void ProgramManager::run()
 			interface.run();
 		}
 
-		std::cout << "Would you like to run the program again? Enter y for yes or n for no" << std::endl;
+		std::cout << "\nWould you like to run the program again? Enter y for yes or n for no" << std::endl;
 
 		char input;
 		std::cin >> input;
@@ -36,7 +36,7 @@ void ProgramManager::run()
 
 int ProgramManager::readInOrCreateFile()
 {
-	std::cout << "Would you like to read in a 15-File, or create a new one?" << std::endl;
+	std::cout << "\nWould you like to read in a 15-File, or create a new one?" << std::endl;
 	std::cout << "Press 1 to read in or 2 to create new" << std::endl;
 
 	int input = 0;

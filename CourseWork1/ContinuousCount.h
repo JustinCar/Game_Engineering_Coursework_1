@@ -7,9 +7,9 @@ protected:
 	unsigned long long continuousColumns;
 	unsigned long long reverseContinuousColumns;
 
-	unsigned long long total2PartialForStartingConfig;
-	unsigned long long total3PartialForStartingConfig;
-	unsigned long long total4PartialForStartingConfig;
+	int total2PartialForStartingConfig;
+	int total3PartialForStartingConfig;
+	int total4PartialForStartingConfig;
 
 	unsigned long long total2PartialForAll;
 	unsigned long long total3PartialForAll;
@@ -31,9 +31,9 @@ public:
 	unsigned long long getContinuousColumns() const;
 	unsigned long long getReverseContinuousColumns() const;
 
-	unsigned long long getTotal2PartialForStartingConfig() const;
-	unsigned long long getTotal3PartialForStartingConfig() const;
-	unsigned long long getTotal4PartialForStartingConfig() const;
+	int getTotal2PartialForStartingConfig() const;
+	int getTotal3PartialForStartingConfig() const;
+	int getTotal4PartialForStartingConfig() const;
 
 	unsigned long long getTotal2PartialForAll() const;
 	unsigned long long getTotal3PartialForAll() const;

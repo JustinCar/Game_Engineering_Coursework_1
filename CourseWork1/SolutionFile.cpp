@@ -28,6 +28,15 @@ void SolutionFile::writeSolution(ContinuousCount& solution, std::ofstream& myfil
 	myfile << "column = " << solution.getContinuousColumns() << "\n";
 	myfile << "reverse row = " << solution.getReverseContinuousRows() << "\n";
 	myfile << "reverse column = " << solution.getReverseContinuousColumns() << "\n";
+	myfile << "(total for row & column, including reverse, in this configuration)" << "\n";
+	myfile << "2 = " << solution.getTotal2PartialForStartingConfig() << "\n";
+	myfile << "3 = " << solution.getTotal3PartialForStartingConfig() << "\n";
+	myfile << "4 = " << solution.getTotal4PartialForStartingConfig() << "\n";
+
+	myfile << "(total for row & column, including reverse, for all valid turns)" << "\n";
+	myfile << "2 = " << solution.getTotal2PartialForAll() << "\n";
+	myfile << "3 = " << solution.getTotal3PartialForAll() << "\n";
+	myfile << "4 = " << solution.getTotal4PartialForAll() << "\n";
 }
 
 void SolutionFile::writePuzzle(Puzzle& puzzle, std::ofstream& myfile)

@@ -14,6 +14,7 @@ public:
 	void generatePuzzles(int puzzleCount, char generationMethod);
 	void generatePuzzleManually(int puzzleDimension);
 	void generatePuzzleRandomly(int puzzleDimension);
+	bool generateAllPuzzleAtOnce();
 
 	void write15File();
 

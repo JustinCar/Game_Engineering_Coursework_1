@@ -15,22 +15,54 @@ void WriteFileInterface::write15File()
 
 void WriteFileInterface::generatePuzzles(int puzzleCount, char generationMethod)
 {
-	for (int i = 0; i < puzzleCount; i++)
+	if (generationMethod == 'r' && generateAllPuzzleAtOnce())
 	{
+		std::cout << "Creation of puzzles all at once confirmed" << std::endl;
 		int dimensions = inputPuzzleDimension();
 
-		if (generationMethod == 'r')
+		for (int i = 0; i < puzzleCount; i++)
+		{
 			generatePuzzleRandomly(dimensions);
-		else
-			generatePuzzleManually(dimensions);
+		}
+	}
+	else 
+	{
+		std::cout << "Creation of puzzles individually confirmed" << std::endl;
+		for (int i = 0; i < puzzleCount; i++)
+		{
+			int dimensions = inputPuzzleDimension();
+
+			if (generationMethod == 'r')
+				generatePuzzleRandomly(dimensions);
+			else
+				generatePuzzleManually(dimensions);
+		}
+	}
+}
+
+bool WriteFileInterface::generateAllPuzzleAtOnce() 
+{
+	std::cout << "\nWould you like to generate each puzzle individually or all at once?" << std::endl;
+	std::cout << "input 1 for individually or 2 for all at once" << std::endl;
+
+	int num = 0;
+
+	std::cin >> num;
+	while (num !=1 && num != 2)
+	{
+		std::cout << "Please enter a valid number" << std::endl;
+		std::cin >> num;
 	}
 
-	int i = 0;
+	if (num == 1)
+		return false;
+	else
+		return true;
 }
 
 int WriteFileInterface::inputPuzzleDimension()
 {
-	std::cout << "What are the dimensions of the puzzle?" << std::endl;
+	std::cout << "\nWhat are the dimensions of the puzzle?" << std::endl;
 	std::cout << "input 3 for 3x3, 4 for 4x4, 5 for 5x5 etc" << std::endl;
 
 	int dimensions = 0;
@@ -49,7 +81,7 @@ int WriteFileInterface::inputPuzzleDimension()
 
 int WriteFileInterface::inputPuzzleCount()
 {
-	std::cout << "How many puzzles would you like to create? " << std::endl;
+	std::cout << "\nHow many puzzles would you like to create? " << std::endl;
 
 	int puzzleCount = 0;
 
@@ -67,7 +99,7 @@ int WriteFileInterface::inputPuzzleCount()
 
 char WriteFileInterface::inputGenerationMethod()
 {
-	std::cout << "How would you like to generate these puzzles? \n" << std::endl;
+	std::cout << "\nHow would you like to generate these puzzles?" << std::endl;
 	std::cout << "Enter r for randomly or m for manually" << std::endl;
 
 	char generationMethod;
@@ -168,7 +200,7 @@ void WriteFileInterface::generatePuzzleManually(int puzzleDimension)
 		puzzleArray[i] = 0;
 	}
 
-	std::cout << "Enter each number starting from the top left tile, progressing from left to right" << std::endl;
+	std::cout << "\nEnter each number starting from the top left tile, progressing from left to right" << std::endl;
 
 	for (int i = 0; i < arraySize; i++)
 	{
