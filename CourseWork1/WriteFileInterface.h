@@ -1,6 +1,12 @@
 #pragma once
 #include "UserInterface.h"
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+User interface for writing puzzles to the 15-File
+*/
 class WriteFileInterface : public UserInterface
 {
 

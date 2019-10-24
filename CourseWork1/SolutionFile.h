@@ -9,6 +9,13 @@
 #include "Solution.h"
 #include "Windows.h"
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Takes in a vector of solutions and outputs the
+data in valid format to Solution-File
+*/
 class SolutionFile
 {
 protected:

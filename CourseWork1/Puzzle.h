@@ -1,6 +1,12 @@
 #pragma once
 #include <iostream>
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Stores each individual puzzle
+*/
 class Puzzle
 {
 protected:

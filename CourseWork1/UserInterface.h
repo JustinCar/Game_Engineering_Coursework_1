@@ -14,6 +14,13 @@
 #include "ReadPuzzleFile.h"
 #include <thread>
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Base class for both write and read subclasses.
+Six threads are created when the object is created.
+*/
 class UserInterface
 {
 protected:

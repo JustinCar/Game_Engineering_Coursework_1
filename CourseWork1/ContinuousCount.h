@@ -1,5 +1,13 @@
 #pragma once
 #include "InfInt.h"
+
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+A container for all the data that classes BruteForce &
+ContinuousCalculator need to return
+*/
 class ContinuousCount
 {
 protected:

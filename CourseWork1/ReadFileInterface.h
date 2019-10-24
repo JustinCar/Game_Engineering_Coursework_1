@@ -3,6 +3,12 @@
 #include "BruteForce.h"
 #include <vector>
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+User interface for read a 15-File and outputting a Solution_File
+*/
 class ReadFileInterface : public UserInterface
 {
 public:

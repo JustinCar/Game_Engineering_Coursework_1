@@ -6,6 +6,14 @@
 #include "Solution.h"
 #include "InfInt.h"
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Given a puzzle, calculate the total continuous/reverse rows and columns
+as well as the partially continuous/reverse rows and columns for both the starting configurations
+and all valid permutations
+*/
 class ContinuousCalculator
 {
 protected:
@@ -21,9 +29,9 @@ public:
 	InfInt calculateContinuous();
 	InfInt calculatePartiallyContinuous(int constantValue);
 
-	InfInt continuousNumberCountEqualToDimension();
+	InfInt continuousNumberCountEqualToDimension(); // Calculates the number of continuous sequences equal to row/column length in the puzzle when sorted
 	InfInt continuousNumberCountEqualToDimensionMinusOne();
-	InfInt numberOfOccursions();
+	InfInt numberOfOccursions(); // Calculates the number of times a single sequence could occur in all rows/columns except the row/column with the empty tile
 	InfInt numberOfOccursionsBottomRow();
 
 	InfInt numberOfOccursionsPartial(int constantValue);
@@ -39,5 +47,7 @@ public:
 	InfInt factorial(InfInt n);
 
 	ContinuousCount& getContainer() const;
+private:
+
 };
 

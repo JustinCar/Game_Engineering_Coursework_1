@@ -3,6 +3,15 @@
 #include <algorithm> 
 #include "ContinuousCount.h"
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Iterate through all possible permutations of a set, 
+check each permutation for 15 puzzle validity and then count 
+the number of continuous/reverse rows and columns as well as 
+partially continuous/reverse rows and columns.
+*/
 class BruteForce
 {
 protected:

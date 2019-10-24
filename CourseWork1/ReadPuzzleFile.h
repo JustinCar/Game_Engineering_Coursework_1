@@ -6,6 +6,12 @@
 #include <string> 
 #include <sstream> 
 
+/**
+Author: Justin Carter
+Student number: 160383867
+Date: 24/10/2019
+Reads the 15-File and stores all puzzles in a vector
+*/
 class ReadPuzzleFile
 {
 protected:

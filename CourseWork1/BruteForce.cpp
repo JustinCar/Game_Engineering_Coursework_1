@@ -15,7 +15,9 @@ BruteForce::BruteForce(Puzzle* puzzleVal) : continuousRows(0),
 {
 }
 
-void BruteForce::run(){	int numberOfTwoPartialStartingConfig = calculatePartialContinuousRows(2) + calculatePartialContinuousColumns(2);
+void BruteForce::run()
+{
+	int numberOfTwoPartialStartingConfig = calculatePartialContinuousRows(2) + calculatePartialContinuousColumns(2);
 	int numberOfThreePartialStartingConfig = calculatePartialContinuousRows(3) + calculatePartialContinuousColumns(3);
 	int numberOfFourPartialStartingConfig = calculatePartialContinuousRows(4) + calculatePartialContinuousColumns(4);
 
