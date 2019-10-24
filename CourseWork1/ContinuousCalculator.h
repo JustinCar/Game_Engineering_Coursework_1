@@ -10,9 +10,10 @@ class ContinuousCalculator
 protected:
 	ContinuousCount* container;
 	Puzzle* puzzle;
+	bool includeEmpty;
 
 public:
-	ContinuousCalculator(Puzzle* puzzleVal);
+	ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal);
 	unsigned long long calculateContinuous();
 	unsigned long long calculatePartiallyContinuous(int constantValue);
 
@@ -31,8 +32,6 @@ public:
 	int checkForContinuousStartingConfig(int* arr, int constantValue);
 	int checkForReverseStartingConfig(int* arr, int constantValue);
 	int* flipArray(int* arr, int size);
-
-	
 
 	unsigned long long factorial(int n);
 

@@ -9,5 +9,6 @@ public:
 	bool validPuzzle(); // Check for parity, overlapping numbers, numbers within range
 	void printInfo(ContinuousCount& result);
 	void buildSolutionFile(std::vector<Solution*> solutions);
+	bool includeEmptyTileRowAndColumn();
 };
 

@@ -1,6 +1,6 @@
 #include "ContinuousCalculator.h"
 
-ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal) : puzzle (puzzleVal)
+ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal) : puzzle (puzzleVal), includeEmpty(includeEmptyVal)
 {
 	unsigned long long totalNumberOfContinuous = calculateContinuous();
 
@@ -19,16 +19,29 @@ ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal) : puzzle (puzzleVa
 
 unsigned long long ContinuousCalculator::calculateContinuous()
 {
-	unsigned long long occursions = numberOfOccursions();
-	unsigned long long occursionsBottomRow = numberOfOccursionsBottomRow();
+	if (includeEmpty) 
+	{
+		unsigned long long occursions = numberOfOccursions();
+		unsigned long long occursionsBottomRow = numberOfOccursionsBottomRow();
 
-	unsigned long long continous = continuousNumberCountEqualToDimension();
-	unsigned long long continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
+		unsigned long long continous = continuousNumberCountEqualToDimension();
+		unsigned long long continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
 
-	unsigned long long numberOfContinuous = occursions * continous;
-	unsigned long long numberOfContinuousBottomRow = occursionsBottomRow * continousBottomRow;
+		unsigned long long numberOfContinuous = occursions * continous;
+		unsigned long long numberOfContinuousBottomRow = occursionsBottomRow * continousBottomRow;
 
-	return numberOfContinuous + numberOfContinuousBottomRow;
+		return numberOfContinuous + numberOfContinuousBottomRow;
+	}
+	else 
+	{
+		unsigned long long occursions = numberOfOccursions();
+
+		unsigned long long continous = continuousNumberCountEqualToDimension();
+
+		unsigned long long numberOfContinuous = occursions * continous;
+
+		return numberOfContinuous;
+	}
 }
 
 unsigned long long ContinuousCalculator::calculatePartiallyContinuous(int constantValue)
@@ -36,8 +49,7 @@ unsigned long long ContinuousCalculator::calculatePartiallyContinuous(int consta
 	unsigned long long partialOccursions = numberOfOccursionsPartial(constantValue);
 	unsigned long long partialOccursionsBottomRow = numberOfOccursionsPartialBottomRow(constantValue);
 	unsigned long long partialContinous = partialContinuousCount(constantValue);
-	return partialContinous * (partialOccursions + partialOccursionsBottomRow);
-
+	return (partialContinous * (partialOccursions + partialOccursionsBottomRow)) * 4;
 }
 
 ContinuousCount& ContinuousCalculator::getContainer() const
@@ -135,7 +147,7 @@ unsigned long long ContinuousCalculator::numberOfOccursionsPartial(int constantV
 	if (puzzle->getDimensions() < constantValue)
 		return 0;
 
-	return ((factorial((puzzle->getSize() - constantValue)) / 2) * puzzle->getDimensions() - (constantValue - 1)) * (puzzle->getDimensions() - 1);
+	return ((factorial((puzzle->getSize() - constantValue)) / 2) * (puzzle->getDimensions() - (constantValue - 1))) * (puzzle->getDimensions() - 1);
 }
 
 unsigned long long ContinuousCalculator::numberOfOccursionsPartialBottomRow(int constantValue)
@@ -143,7 +155,7 @@ unsigned long long ContinuousCalculator::numberOfOccursionsPartialBottomRow(int 
 	if ((puzzle->getDimensions() - 1) < constantValue)
 		return 0;
 
-	return ((factorial((puzzle->getSize() - constantValue)) / 2) * (puzzle->getDimensions() - 1) - (constantValue - 1));
+	return ((factorial((puzzle->getSize() - constantValue)) / 2) * ((puzzle->getDimensions() - 1) - (constantValue - 1)));
 }
 
 int ContinuousCalculator::partialContinuousCount(int constantValue)
@@ -222,18 +234,18 @@ int ContinuousCalculator::calculatePartialContinuousColumnsStartingConfig(int co
 {
 	int counter = 0;
 	int dimensions = puzzle->getDimensions();
-	for (int i = 0; i < puzzle->getDimensions(); i++)
+	for (int i = 0; i < dimensions; i++)
 	{
 		int* column = new int[dimensions];
 
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < dimensions; i++)
 		{
 			column[i] = -1;
 		}
 
 		int columnIterator = 0;
 
-		for (int j = i; j < (i + (dimensions * dimensions)); j += dimensions)
+		for (int j = i; j < (i + (dimensions * (dimensions))); j += dimensions)
 		{
 			if (j == puzzle->getSize())
 				break;

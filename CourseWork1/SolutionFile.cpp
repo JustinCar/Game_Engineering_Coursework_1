@@ -1,14 +1,27 @@
 #include "SolutionFile.h"
 
-SolutionFile::SolutionFile(std::vector<Solution*>& solutionsVal) : solutions(solutionsVal)
+SolutionFile::SolutionFile(std::vector<Solution*>& solutionsVal) : solutions(solutionsVal), fileName("Solution-File.txt")
 {
 	writeToFile();
 }
 
 void SolutionFile::writeToFile()
 {
+	if (!validFileName(fileName))
+	{
+		std::cout << "File name contains invalid characters";
+		return;
+	}
+
 	std::ofstream myfile;
-	myfile.open("Solution-File.txt", std::ofstream::out | std::ofstream::trunc);
+	myfile.open(fileName, std::ofstream::out | std::ofstream::trunc);
+
+	if (!myfile)
+	{
+		std::cout << "Unable to find/open Solution-file";
+		return;
+	}
+
 	myfile << solutions.size();
 
 	for (int i = 0; i < solutions.size(); i++)
@@ -19,6 +32,14 @@ void SolutionFile::writeToFile()
 	}
 
 	myfile.close();
+}
+
+bool SolutionFile::validFileName(std::string name)
+{
+	if (name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890-. ") != std::string::npos)
+		return false;
+
+	return true;
 }
 
 void SolutionFile::writeSolution(ContinuousCount& solution, std::ofstream& myfile)

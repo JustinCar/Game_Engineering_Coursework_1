@@ -1,18 +1,24 @@
 #include "ReadPuzzleFile.h"
 
-ReadPuzzleFile::ReadPuzzleFile(std::vector<Puzzle*>& puzzles)
+ReadPuzzleFile::ReadPuzzleFile(std::vector<Puzzle*>& puzzles) : fileName("15-File.txt")
 {
 	readFile(puzzles);
 }
 
 void ReadPuzzleFile::readFile(std::vector<Puzzle*>& puzzles)
 {
+	if (!validFileName(fileName))
+	{
+		std::cout << "File name contains invalid characters";
+		return;
+	}
+
 	std::ifstream myfile;
-	myfile.open("15-File.txt", std::ifstream::in);
+	myfile.open(fileName, std::ifstream::in);
 
 	if (!myfile)
 	{
-		std::cout << "Unable to open 15-file";
+		std::cout << "Unable to find/open 15-file";
 		return;
 	}
 
@@ -32,6 +38,14 @@ void ReadPuzzleFile::readFile(std::vector<Puzzle*>& puzzles)
 	}
 
 	myfile.close();
+}
+
+bool ReadPuzzleFile::validFileName(std::string name)
+{
+	if (name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890-. ") != std::string::npos)
+		return false;
+
+	return true;
 }
 
 bool ReadPuzzleFile::readPuzzle(std::vector<Puzzle*>& puzzles, std::ifstream& myfile)

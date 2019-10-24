@@ -10,13 +10,13 @@ void ProgramManager::run()
 
 		if (option == 2)
 		{
-			WriteFileInterface interface;
-			interface.run();
+			WriteFileInterface userInterface;
+			userInterface.run();
 		}
 		else
 		{
-			ReadFileInterface interface;
-			interface.run();
+			ReadFileInterface userInterface;
+			userInterface.run();
 		}
 
 		std::cout << "\nWould you like to run the program again? Enter y for yes or n for no" << std::endl;
