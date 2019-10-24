@@ -17,7 +17,8 @@ protected:
 	std::string fileName;
 public:
 	WritePuzzleFile(std::vector<Puzzle*>& puzzles);
-
+	
+private:
 	void writeToFile(std::vector<Puzzle*>& puzzles);
 	void writePuzzle(Puzzle& puzzle, std::ofstream& myfile);
 	bool validFileName(std::string name);

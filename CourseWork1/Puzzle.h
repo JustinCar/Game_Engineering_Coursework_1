@@ -14,6 +14,7 @@ protected:
 	int* copy;
 	int dimensions;
 	int size;
+
 public:
 	Puzzle(int* originalVal, int dimensionsVal);
 	~Puzzle();

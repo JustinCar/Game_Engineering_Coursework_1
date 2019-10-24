@@ -11,9 +11,9 @@ class WriteFileInterface : public UserInterface
 {
 
 public:
-
 	virtual void run();
 
+private:
 	int inputPuzzleCount();
 	char inputGenerationMethod();
 	int inputPuzzleDimension();

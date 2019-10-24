@@ -29,11 +29,13 @@ protected:
 
 	ContinuousCount* container;
 	Puzzle* puzzle;
+
 public:
 	BruteForce(Puzzle* puzzleVal);
-
 	void run();
+	ContinuousCount& getContainer() const;
 
+private:
 	bool isLegalPermutation();
 	void permutations(int k);
 	void swap(int pos1, int pos2);
@@ -42,12 +44,9 @@ public:
 	bool checkForContinuous(int* arr);
 	bool checkForReverse(int* arr);
 
-
 	int calculatePartialContinuousRows(int constantValue);
 	int calculatePartialContinuousColumns(int constantValue);
 	int checkForContinuous(int* arr, int constantValue);
 	int* flipArray(int* arr, int size);
-
-	ContinuousCount& getContainer() const;
 };
 

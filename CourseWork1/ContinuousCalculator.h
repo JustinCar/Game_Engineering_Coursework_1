@@ -13,6 +13,9 @@ Date: 24/10/2019
 Given a puzzle, calculate the total continuous/reverse rows and columns
 as well as the partially continuous/reverse rows and columns for both the starting configurations
 and all valid permutations
+
+Uses InfInt by sercantutar to allow calculations on huge numbers
+https://github.com/sercantutar/infint
 */
 class ContinuousCalculator
 {
@@ -25,7 +28,9 @@ public:
 	ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal);
 
 	void run();
-
+	InfInt factorial(InfInt n);
+	ContinuousCount& getContainer() const;
+private:
 	InfInt calculateContinuous();
 	InfInt calculatePartiallyContinuous(int constantValue);
 
@@ -43,11 +48,5 @@ public:
 	InfInt calculatePartialContinuousColumnsStartingConfig(int constantValue);
 	InfInt checkForContinuousStartingConfig(int* arr, int constantValue);
 	int* flipArray(int* arr, int size);
-
-	InfInt factorial(InfInt n);
-
-	ContinuousCount& getContainer() const;
-private:
-
 };
 

@@ -13,7 +13,9 @@ Called directly from the main function, runs the program
 class ProgramManager
 {
 public:
-	int readInOrCreateFile();
 	virtual void run();
+
+private:
+	int readInOrCreateFile();
 };
 

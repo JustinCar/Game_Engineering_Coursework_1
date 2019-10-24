@@ -13,6 +13,8 @@ class ReadFileInterface : public UserInterface
 {
 public:
 	void run();
+	
+private:
 	void read15File();
 	void buildSolutionFile(std::vector<Solution*> solutions);
 	bool includeEmptyTileRowAndColumn();
