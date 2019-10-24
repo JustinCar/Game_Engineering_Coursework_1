@@ -2,53 +2,53 @@
 
 ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal) : puzzle (puzzleVal), includeEmpty(includeEmptyVal)
 {
-	unsigned long long totalNumberOfContinuous = calculateContinuous();
+	InfInt totalNumberOfContinuous = calculateContinuous();
 
-	int numberOfTwoPartialStartingConfig = calculatePartialContinuousRowsStartingConfig(2) + calculatePartialContinuousColumnsStartingConfig(2);
-	int numberOfThreePartialStartingConfig = calculatePartialContinuousRowsStartingConfig(3) + calculatePartialContinuousColumnsStartingConfig(3);
-	int numberOfFourPartialStartingConfig = calculatePartialContinuousRowsStartingConfig(4) + calculatePartialContinuousColumnsStartingConfig(4);
+	InfInt numberOfTwoPartialStartingConfig = calculatePartialContinuousRowsStartingConfig(2) + calculatePartialContinuousColumnsStartingConfig(2);
+	InfInt numberOfThreePartialStartingConfig = calculatePartialContinuousRowsStartingConfig(3) + calculatePartialContinuousColumnsStartingConfig(3);
+	InfInt numberOfFourPartialStartingConfig = calculatePartialContinuousRowsStartingConfig(4) + calculatePartialContinuousColumnsStartingConfig(4);
 
-	unsigned long long totalNumberOfTwoPartial = calculatePartiallyContinuous(2);
-	unsigned long long totalNumberOfThreePartial = calculatePartiallyContinuous(3);
-	unsigned long long totalNumberOfFourPartial = calculatePartiallyContinuous(4);
+	InfInt totalNumberOfTwoPartial = calculatePartiallyContinuous(2);
+	InfInt totalNumberOfThreePartial = calculatePartiallyContinuous(3);
+	InfInt totalNumberOfFourPartial = calculatePartiallyContinuous(4);
 
 	container = new ContinuousCount(totalNumberOfContinuous, totalNumberOfContinuous, totalNumberOfContinuous, totalNumberOfContinuous, 
 		numberOfTwoPartialStartingConfig, numberOfThreePartialStartingConfig, numberOfFourPartialStartingConfig,
 		totalNumberOfTwoPartial, totalNumberOfThreePartial, totalNumberOfFourPartial);
 }
 
-unsigned long long ContinuousCalculator::calculateContinuous()
+InfInt ContinuousCalculator::calculateContinuous()
 {
 	if (includeEmpty) 
 	{
-		unsigned long long occursions = numberOfOccursions();
-		unsigned long long occursionsBottomRow = numberOfOccursionsBottomRow();
+		InfInt occursions = numberOfOccursions();
+		InfInt occursionsBottomRow = numberOfOccursionsBottomRow();
 
-		unsigned long long continous = continuousNumberCountEqualToDimension();
-		unsigned long long continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
+		InfInt continous = continuousNumberCountEqualToDimension();
+		InfInt continousBottomRow = continuousNumberCountEqualToDimensionMinusOne();
 
-		unsigned long long numberOfContinuous = occursions * continous;
-		unsigned long long numberOfContinuousBottomRow = occursionsBottomRow * continousBottomRow;
+		InfInt numberOfContinuous = occursions * continous;
+		InfInt numberOfContinuousBottomRow = occursionsBottomRow * continousBottomRow;
 
 		return numberOfContinuous + numberOfContinuousBottomRow;
 	}
 	else 
 	{
-		unsigned long long occursions = numberOfOccursions();
+		InfInt occursions = numberOfOccursions();
 
-		unsigned long long continous = continuousNumberCountEqualToDimension();
+		InfInt continous = continuousNumberCountEqualToDimension();
 
-		unsigned long long numberOfContinuous = occursions * continous;
+		InfInt numberOfContinuous = occursions * continous;
 
 		return numberOfContinuous;
 	}
 }
 
-unsigned long long ContinuousCalculator::calculatePartiallyContinuous(int constantValue)
+InfInt ContinuousCalculator::calculatePartiallyContinuous(int constantValue)
 {
-	unsigned long long partialOccursions = numberOfOccursionsPartial(constantValue);
-	unsigned long long partialOccursionsBottomRow = numberOfOccursionsPartialBottomRow(constantValue);
-	unsigned long long partialContinous = partialContinuousCount(constantValue);
+	InfInt partialOccursions = numberOfOccursionsPartial(constantValue);
+	InfInt partialOccursionsBottomRow = numberOfOccursionsPartialBottomRow(constantValue);
+	InfInt partialContinous = partialContinuousCount(constantValue);
 	return (partialContinous * (partialOccursions + partialOccursionsBottomRow)) * 4;
 }
 
@@ -57,7 +57,7 @@ ContinuousCount& ContinuousCalculator::getContainer() const
 	return *container;
 }
 
-unsigned long long ContinuousCalculator::factorial(int n)
+InfInt ContinuousCalculator::factorial(InfInt n)
 {
 	if (n > 1)
 		return n * factorial(n - 1);
@@ -65,17 +65,17 @@ unsigned long long ContinuousCalculator::factorial(int n)
 		return 1;
 }
 
-unsigned long long ContinuousCalculator::numberOfOccursions()
+InfInt ContinuousCalculator::numberOfOccursions()
 {
 	return (factorial((puzzle->getSize() - puzzle->getDimensions())) / 2) * (puzzle->getDimensions() - 1);
 }
 
-unsigned long long ContinuousCalculator::numberOfOccursionsBottomRow()
+InfInt ContinuousCalculator::numberOfOccursionsBottomRow()
 {
 	return (factorial((puzzle->getSize() - (puzzle->getDimensions() - 1))) / 2);
 }
 
-int ContinuousCalculator::continuousNumberCountEqualToDimension()
+InfInt ContinuousCalculator::continuousNumberCountEqualToDimension()
 {
 	std::vector<int> arr;
 	for (int i = 0; i < puzzle->getSize(); i++) 
@@ -109,7 +109,7 @@ int ContinuousCalculator::continuousNumberCountEqualToDimension()
 }
 
 //The number of continous rows that could appear in the bottom row or right most column
-int ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
+InfInt ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
 {
 	std::vector<int> arr;
 	for (int i = 0; i < puzzle->getSize(); i++)
@@ -142,7 +142,7 @@ int ContinuousCalculator::continuousNumberCountEqualToDimensionMinusOne()
 	return continuousCount;
 }
 
-unsigned long long ContinuousCalculator::numberOfOccursionsPartial(int constantValue)
+InfInt ContinuousCalculator::numberOfOccursionsPartial(int constantValue)
 {
 	if (puzzle->getDimensions() < constantValue)
 		return 0;
@@ -150,7 +150,7 @@ unsigned long long ContinuousCalculator::numberOfOccursionsPartial(int constantV
 	return ((factorial((puzzle->getSize() - constantValue)) / 2) * (puzzle->getDimensions() - (constantValue - 1))) * (puzzle->getDimensions() - 1);
 }
 
-unsigned long long ContinuousCalculator::numberOfOccursionsPartialBottomRow(int constantValue)
+InfInt ContinuousCalculator::numberOfOccursionsPartialBottomRow(int constantValue)
 {
 	if ((puzzle->getDimensions() - 1) < constantValue)
 		return 0;
@@ -158,7 +158,7 @@ unsigned long long ContinuousCalculator::numberOfOccursionsPartialBottomRow(int 
 	return ((factorial((puzzle->getSize() - constantValue)) / 2) * ((puzzle->getDimensions() - 1) - (constantValue - 1)));
 }
 
-int ContinuousCalculator::partialContinuousCount(int constantValue)
+InfInt ContinuousCalculator::partialContinuousCount(int constantValue)
 {
 	if (puzzle->getDimensions() < constantValue)
 		return 0;
@@ -192,9 +192,9 @@ int ContinuousCalculator::partialContinuousCount(int constantValue)
 	return continuousCount;
 }
 
-int  ContinuousCalculator::calculatePartialContinuousRowsStartingConfig(int constantValue)
+InfInt ContinuousCalculator::calculatePartialContinuousRowsStartingConfig(int constantValue)
 {
-	int counter = 0;
+	InfInt counter = 0;
 
 	int dimensions = puzzle->getDimensions();
 	for (int j = 0; j < (dimensions * dimensions); j += dimensions)
@@ -230,9 +230,9 @@ int  ContinuousCalculator::calculatePartialContinuousRowsStartingConfig(int cons
 	return counter;
 }
 
-int ContinuousCalculator::calculatePartialContinuousColumnsStartingConfig(int constantValue)
+InfInt ContinuousCalculator::calculatePartialContinuousColumnsStartingConfig(int constantValue)
 {
-	int counter = 0;
+	InfInt counter = 0;
 	int dimensions = puzzle->getDimensions();
 	for (int i = 0; i < dimensions; i++)
 	{
@@ -267,7 +267,7 @@ int ContinuousCalculator::calculatePartialContinuousColumnsStartingConfig(int co
 	return counter;
 }
 
-int ContinuousCalculator::checkForContinuousStartingConfig(int* arr, int constantValue)
+InfInt ContinuousCalculator::checkForContinuousStartingConfig(int* arr, int constantValue)
 {
 	int continuousCount = 0;
 

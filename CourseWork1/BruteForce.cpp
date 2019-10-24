@@ -36,15 +36,6 @@ void BruteForce::swap(int pos1, int pos2)
 	puzzle->getCopy()[pos2] = temp;
 }
 
-void BruteForce::printInfo()
-{
-	std::cout << "\n\n BRUTE FORCE IMPLEMENTATION" << std::endl;
-	std::cout << "Continuous rows: " << continuousRows << std::endl;
-	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
-	std::cout << "Continuous columns: " << continuousColumns << std::endl;
-	std::cout << "Reverse continuous columns: " << reverseContinuousColumns << std::endl;
-}
-
 // Make sure the permutation is reachable
 // By only sliding the tiles
 // Number of inversions must always be even

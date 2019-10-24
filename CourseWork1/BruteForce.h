@@ -24,7 +24,6 @@ public:
 	BruteForce(Puzzle* puzzleVal);
 
 	bool isLegalPermutation();
-	void printInfo();
 	void permutations(int k);
 	void swap(int pos1, int pos2);
 	void calculateContinuousRows();

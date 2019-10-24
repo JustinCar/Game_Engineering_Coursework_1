@@ -4,6 +4,7 @@
 #include <vector>
 #include "ContinuousCount.h"
 #include "Solution.h"
+#include "InfInt.h"
 
 class ContinuousCalculator
 {
@@ -14,25 +15,25 @@ protected:
 
 public:
 	ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal);
-	unsigned long long calculateContinuous();
-	unsigned long long calculatePartiallyContinuous(int constantValue);
+	InfInt calculateContinuous();
+	InfInt calculatePartiallyContinuous(int constantValue);
 
-	int continuousNumberCountEqualToDimension();
-	int continuousNumberCountEqualToDimensionMinusOne();
-	unsigned long long numberOfOccursions();
-	unsigned long long numberOfOccursionsBottomRow();
+	InfInt continuousNumberCountEqualToDimension();
+	InfInt continuousNumberCountEqualToDimensionMinusOne();
+	InfInt numberOfOccursions();
+	InfInt numberOfOccursionsBottomRow();
 
-	unsigned long long numberOfOccursionsPartial(int constantValue);
-	unsigned long long numberOfOccursionsPartialBottomRow(int constantValue);
-	int partialContinuousCount(int constantValue);
+	InfInt numberOfOccursionsPartial(int constantValue);
+	InfInt numberOfOccursionsPartialBottomRow(int constantValue);
+	InfInt partialContinuousCount(int constantValue);
 
 	// Functions for starting config
-	int calculatePartialContinuousRowsStartingConfig(int constantValue);
-	int calculatePartialContinuousColumnsStartingConfig(int constantValue);
-	int checkForContinuousStartingConfig(int* arr, int constantValue);
+	InfInt calculatePartialContinuousRowsStartingConfig(int constantValue);
+	InfInt calculatePartialContinuousColumnsStartingConfig(int constantValue);
+	InfInt checkForContinuousStartingConfig(int* arr, int constantValue);
 	int* flipArray(int* arr, int size);
 
-	unsigned long long factorial(int n);
+	InfInt factorial(InfInt n);
 
 	ContinuousCount& getContainer() const;
 };

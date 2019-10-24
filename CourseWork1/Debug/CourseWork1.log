@@ -1,4 +1,19 @@
-﻿  ReadFileInterface.cpp
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(13,20): warning C4018:  '<': signed/unsigned mismatch
-H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(118,20): warning C4018:  '<': signed/unsigned mismatch
+﻿  ContinuousCalculator.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(91,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(96,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(124,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(129,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(176,20): warning C4018:  '<': signed/unsigned mismatch
+  ProgramManager.cpp
+  ReadFileInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ContinuousCalculator.cpp(181,10): warning C4018:  '>=': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(18,20): warning C4018:  '<': signed/unsigned mismatch
+  Test.cpp
+  UserInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\ReadFileInterface.cpp(149,20): warning C4018:  '<': signed/unsigned mismatch
+  WriteFileInterface.cpp
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\UserInterface.cpp(10,20): warning C4018:  '<': signed/unsigned mismatch
+  Generating Code...
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\WriteFileInterface.cpp(189,20): warning C4018:  '<': signed/unsigned mismatch
+H:\GitHub\Game_Engineering_Coursework_1\CourseWork1\WriteFileInterface.cpp(237): warning C4715:  'WriteFileInterface::validNumber': not all control paths return a value
   CourseWork1.vcxproj -> H:\GitHub\Game_Engineering_Coursework_1\Debug\CourseWork1.exe

@@ -1,15 +1,15 @@
 #include "ContinuousCount.h"
 
-ContinuousCount::ContinuousCount(unsigned long long continuousRowsVal,
-	unsigned long long  reverseContinuousRowsVal,
-	unsigned long long continuousColumnsVal,
-	unsigned long long reverseContinuousColumnsVal,
-	unsigned long long total2PartialForStartingConfigVal,
-	unsigned long long total3PartialForStartingConfigVal,
-	unsigned long long total4PartialForStartingConfigVal,
-	unsigned long long total2PartialForAllVal,
-	unsigned long long total3PartialForAllVal,
-	unsigned long long total4PartialForAllVal) : continuousRows(continuousRowsVal),
+ContinuousCount::ContinuousCount(InfInt continuousRowsVal,
+	InfInt  reverseContinuousRowsVal,
+	InfInt continuousColumnsVal,
+	InfInt reverseContinuousColumnsVal,
+	InfInt total2PartialForStartingConfigVal,
+	InfInt total3PartialForStartingConfigVal,
+	InfInt total4PartialForStartingConfigVal,
+	InfInt total2PartialForAllVal,
+	InfInt total3PartialForAllVal,
+	InfInt total4PartialForAllVal) : continuousRows(continuousRowsVal),
 														reverseContinuousRows(reverseContinuousRowsVal),
 														continuousColumns(continuousColumnsVal),
 														reverseContinuousColumns(reverseContinuousColumnsVal),
@@ -23,53 +23,53 @@ ContinuousCount::ContinuousCount(unsigned long long continuousRowsVal,
 
 }
 
-unsigned long long ContinuousCount::getContinuousRows() const
+InfInt ContinuousCount::getContinuousRows() const
 {
 	return continuousRows;
 }
 
-unsigned long long ContinuousCount::getReverseContinuousRows() const
+InfInt ContinuousCount::getReverseContinuousRows() const
 {
 	return reverseContinuousRows;
 }
 
-unsigned long long ContinuousCount::getContinuousColumns() const
+InfInt ContinuousCount::getContinuousColumns() const
 {
 	return continuousColumns;
 }
 
-unsigned long long ContinuousCount::getReverseContinuousColumns() const
+InfInt ContinuousCount::getReverseContinuousColumns() const
 {
 	return reverseContinuousColumns;
 }
 
-int ContinuousCount::getTotal2PartialForStartingConfig() const
+InfInt ContinuousCount::getTotal2PartialForStartingConfig() const
 {
 	return total2PartialForStartingConfig;
 }
 
 
-int ContinuousCount::getTotal3PartialForStartingConfig() const
+InfInt ContinuousCount::getTotal3PartialForStartingConfig() const
 {
 	return total3PartialForStartingConfig;
 }
 
-int ContinuousCount::getTotal4PartialForStartingConfig() const
+InfInt ContinuousCount::getTotal4PartialForStartingConfig() const
 {
 	return total4PartialForStartingConfig;
 }
 
-unsigned long long ContinuousCount::getTotal2PartialForAll() const
+InfInt ContinuousCount::getTotal2PartialForAll() const
 {
 	return total2PartialForAll;
 }
 
-unsigned long long ContinuousCount::getTotal3PartialForAll() const
+InfInt ContinuousCount::getTotal3PartialForAll() const
 {
 	return total3PartialForAll;
 }
 
-unsigned long long ContinuousCount::getTotal4PartialForAll() const
+InfInt ContinuousCount::getTotal4PartialForAll() const
 {
 	return total4PartialForAll;
 }
