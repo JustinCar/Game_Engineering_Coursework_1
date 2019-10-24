@@ -22,6 +22,8 @@ public:
 	void writePuzzle(Puzzle& puzzle, std::ofstream& myfile);
 	void writeSolution(ContinuousCount& solution, std::ofstream& myfile);
 	bool validFileName(std::string name);
+	bool puzzleFileCreated();
+	bool solutionFileCreated();
 
 };
 

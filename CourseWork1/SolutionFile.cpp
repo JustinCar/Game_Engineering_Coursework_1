@@ -2,7 +2,27 @@
 
 SolutionFile::SolutionFile(std::vector<Solution*>& solutionsVal) : solutions(solutionsVal), fileName("Solution-File.txt")
 {
-	writeToFile();
+	do
+		writeToFile();
+	while (!solutionFileCreated());
+
+}
+
+bool SolutionFile::solutionFileCreated()
+{
+	std::ofstream myfile;
+	myfile.open(fileName);
+
+	if (!myfile)
+	{
+		std::cout << "Solution-File creation failed, tring again" << std::endl;
+		return false;
+	}
+	else
+	{
+		std::cout << "Solution-File created successfully" << std::endl;
+		return true;
+	}
 }
 
 void SolutionFile::writeToFile()

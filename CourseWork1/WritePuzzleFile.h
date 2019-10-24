@@ -14,4 +14,5 @@ public:
 	void writeToFile(std::vector<Puzzle*>& puzzles);
 	void writePuzzle(Puzzle& puzzle, std::ofstream& myfile);
 	bool validFileName(std::string name);
+	bool puzzleFileCreated();
 };

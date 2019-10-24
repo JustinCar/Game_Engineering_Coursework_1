@@ -2,14 +2,33 @@
 
 WritePuzzleFile::WritePuzzleFile(std::vector<Puzzle*>& puzzles) : fileName("15-File.txt")
 {
-	writeToFile(puzzles);
+	do
+		writeToFile(puzzles);
+	while (!puzzleFileCreated());
+}
+
+bool WritePuzzleFile::puzzleFileCreated()
+{
+	std::ofstream myfile;
+	myfile.open(fileName);
+
+	if (!myfile)
+	{
+		std::cout << "15-File creation failed, tring again" << std::endl;
+		return false;
+	}
+	else 
+	{
+		std::cout << "15-File created successfully" << std::endl;
+		return true;
+	}
 }
 
 void WritePuzzleFile::writeToFile(std::vector<Puzzle*>& puzzles)
 {
 	if (!validFileName(fileName))
 	{
-		std::cout << "File name contains invalid characters";
+		std::cout << "File name contains invalid characters" << std::endl;
 		return;
 	}
 
@@ -18,7 +37,7 @@ void WritePuzzleFile::writeToFile(std::vector<Puzzle*>& puzzles)
 	
 	if (!myfile)
 	{
-		std::cout << "Unable to find/open 15-file";
+		std::cout << "Unable to find/open 15-file" << std::endl;
 		return;
 	}
 
