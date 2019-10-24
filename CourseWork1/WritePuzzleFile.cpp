@@ -10,16 +10,18 @@ WritePuzzleFile::WritePuzzleFile(std::vector<Puzzle*>& puzzles) : fileName("15-F
 bool WritePuzzleFile::puzzleFileCreated()
 {
 	std::ofstream myfile;
-	myfile.open(fileName);
+	myfile.open(fileName, std::ifstream::in);
 
 	if (!myfile)
 	{
 		std::cout << "15-File creation failed, tring again" << std::endl;
+		myfile.close();
 		return false;
 	}
 	else 
 	{
 		std::cout << "15-File created successfully" << std::endl;
+		myfile.close();
 		return true;
 	}
 }

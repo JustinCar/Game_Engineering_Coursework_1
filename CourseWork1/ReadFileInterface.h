@@ -1,5 +1,6 @@
 #pragma once
 #include "UserInterface.h"
+#include "BruteForce.h"
 
 class ReadFileInterface : public UserInterface
 {
@@ -10,5 +11,7 @@ public:
 	void printInfo(ContinuousCount& result);
 	void buildSolutionFile(std::vector<Solution*> solutions);
 	bool includeEmptyTileRowAndColumn();
+	bool useBruteForce();
+	bool useBruteForceForAll();
 };
 

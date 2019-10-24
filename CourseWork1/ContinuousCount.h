@@ -1,42 +1,43 @@
 #pragma once
+#include "InfInt.h"
 class ContinuousCount
 {
 protected:
-	unsigned long long continuousRows;
-	unsigned long long reverseContinuousRows;
-	unsigned long long continuousColumns;
-	unsigned long long reverseContinuousColumns;
+	InfInt continuousRows;
+	InfInt reverseContinuousRows;
+	InfInt continuousColumns;
+	InfInt reverseContinuousColumns;
 
-	int total2PartialForStartingConfig;
-	int total3PartialForStartingConfig;
-	int total4PartialForStartingConfig;
+	InfInt total2PartialForStartingConfig;
+	InfInt total3PartialForStartingConfig;
+	InfInt total4PartialForStartingConfig;
 
-	unsigned long long total2PartialForAll;
-	unsigned long long total3PartialForAll;
-	unsigned long long total4PartialForAll;
+	InfInt total2PartialForAll;
+	InfInt total3PartialForAll;
+	InfInt total4PartialForAll;
 public:
-	ContinuousCount(unsigned long long continuousRowsVal, 
-		unsigned long long  reverseContinuousRowsVal, 
-		unsigned long long continuousColumnsVal, 
-		unsigned long long reverseContinuousColumnsVal, 
-		unsigned long long total2PartialForStartingConfigVal,
-	unsigned long long total3PartialForStartingConfigVal,
-	unsigned long long total4PartialForStartingConfigVal,
-	unsigned long long total2PartialForAllVal,
-	unsigned long long total3PartialForAllVal,
-	unsigned long long total4PartialForAllVal);
+	ContinuousCount(InfInt continuousRowsVal,
+		InfInt  reverseContinuousRowsVal,
+		InfInt continuousColumnsVal,
+		InfInt reverseContinuousColumnsVal,
+		InfInt total2PartialForStartingConfigVal,
+		InfInt total3PartialForStartingConfigVal,
+		InfInt total4PartialForStartingConfigVal,
+		InfInt total2PartialForAllVal,
+		InfInt total3PartialForAllVal,
+		InfInt total4PartialForAllVal);
 
-	unsigned long long getContinuousRows() const;
-	unsigned long long getReverseContinuousRows() const;
-	unsigned long long getContinuousColumns() const;
-	unsigned long long getReverseContinuousColumns() const;
+	InfInt getContinuousRows() const;
+	InfInt getReverseContinuousRows() const;
+	InfInt getContinuousColumns() const;
+	InfInt getReverseContinuousColumns() const;
 
-	int getTotal2PartialForStartingConfig() const;
-	int getTotal3PartialForStartingConfig() const;
-	int getTotal4PartialForStartingConfig() const;
+	InfInt getTotal2PartialForStartingConfig() const;
+	InfInt getTotal3PartialForStartingConfig() const;
+	InfInt getTotal4PartialForStartingConfig() const;
 
-	unsigned long long getTotal2PartialForAll() const;
-	unsigned long long getTotal3PartialForAll() const;
-	unsigned long long getTotal4PartialForAll() const;
+	InfInt getTotal2PartialForAll() const;
+	InfInt getTotal3PartialForAll() const;
+	InfInt getTotal4PartialForAll() const;
 };
 

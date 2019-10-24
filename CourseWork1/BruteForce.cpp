@@ -1,13 +1,32 @@
 #include "BruteForce.h"
 
 
-BruteForce::BruteForce(Puzzle* puzzleVal) : permutationCounter(0),
-											continuousRows(0),
+BruteForce::BruteForce(Puzzle* puzzleVal) : continuousRows(0),
 											reverseContinuousRows(0),
 											continuousColumns(0),
 											reverseContinuousColumns(0), 
-											puzzle(puzzleVal)
+											puzzle(puzzleVal),
+											numberOfTwoPartialStartingConfig(0),
+											numberOfThreePartialStartingConfig(0),
+											numberOfFourPartialStartingConfig(0),
+											totalNumberOfTwoPartial(0),
+											totalNumberOfThreePartial(0),
+											totalNumberOfFourPartial(0)
 {
+	int numberOfTwoPartialStartingConfig = calculatePartialContinuousRows(2) + calculatePartialContinuousColumns(2);
+	int numberOfThreePartialStartingConfig = calculatePartialContinuousRows(3) + calculatePartialContinuousColumns(3);
+	int numberOfFourPartialStartingConfig = calculatePartialContinuousRows(4) + calculatePartialContinuousColumns(4);
+
+	permutations(puzzle->getSize());
+
+	container = new ContinuousCount(continuousRows, reverseContinuousRows, continuousColumns, reverseContinuousColumns,
+		numberOfTwoPartialStartingConfig, numberOfThreePartialStartingConfig, numberOfFourPartialStartingConfig,
+		totalNumberOfTwoPartial, totalNumberOfThreePartial, totalNumberOfFourPartial);
+}
+
+ContinuousCount& BruteForce::getContainer() const
+{
+	return *container;
 }
 
 void BruteForce::swap(int pos1, int pos2)
@@ -24,25 +43,6 @@ void BruteForce::printInfo()
 	std::cout << "Reverse continuous rows: " << reverseContinuousRows << std::endl;
 	std::cout << "Continuous columns: " << continuousColumns << std::endl;
 	std::cout << "Reverse continuous columns: " << reverseContinuousColumns << std::endl;
-
-	// Test
-	/*std::cout << "continuous top row: " << topRowCount << std::endl;
-	std::cout << "continuous middle row: " << middleRowCount << std::endl;
-	std::cout << "continuous bottom row: " << bottomRowCount << std::endl;*/
-}
-
-void BruteForce::printArray()
-{
-	permutationCounter++;
-	std::cout << permutationCounter << std::endl;
-	std::cout << "\n\n" << std::endl;
-
-	for (int i = 0; i < puzzle->getSize(); i++)
-	{
-		std::cout << puzzle->getCopy()[i] << std::endl;
-	}
-
-	std::cout << "\n\n\n\n" << std::endl;
 }
 
 // Make sure the permutation is reachable
@@ -68,6 +68,122 @@ bool BruteForce::isLegalPermutation()
 		return true;
 
 	return false;
+}
+
+int  BruteForce::calculatePartialContinuousRows(int constantValue)
+{
+	int counter = 0;
+
+	int dimensions = puzzle->getDimensions();
+	for (int j = 0; j < (dimensions * dimensions); j += dimensions)
+	{
+
+		int* row = new int[puzzle->getDimensions()];
+
+		for (int i = 0; i < dimensions; i++)
+		{
+			row[i] = -1;
+		}
+
+		int rowIterator = 0;
+
+		for (int i = j; i < j + puzzle->getDimensions(); i++)
+		{
+			if (i == puzzle->getSize())
+				break;
+
+			row[rowIterator] = puzzle->getCopy()[i];
+			rowIterator++;
+		}
+
+		counter += checkForContinuous(row, constantValue);
+
+		int* flippedRow = flipArray(row, dimensions);
+		counter += checkForContinuous(flippedRow, constantValue);
+
+		delete[] flippedRow;
+		delete[] row;
+	}
+
+	return counter;
+}
+
+int BruteForce::calculatePartialContinuousColumns(int constantValue)
+{
+	int counter = 0;
+	int dimensions = puzzle->getDimensions();
+	for (int i = 0; i < dimensions; i++)
+	{
+		int* column = new int[dimensions];
+
+		for (int i = 0; i < dimensions; i++)
+		{
+			column[i] = -1;
+		}
+
+		int columnIterator = 0;
+
+		for (int j = i; j < (i + (dimensions * (dimensions))); j += dimensions)
+		{
+			if (j == puzzle->getSize())
+				break;
+
+			int copy = puzzle->getCopy()[j];
+			column[columnIterator] = copy;
+			columnIterator++;
+		}
+
+		counter += checkForContinuous(column, constantValue);
+
+		int* flippedColumn = flipArray(column, dimensions);
+		counter += checkForContinuous(flippedColumn, constantValue);
+
+		delete[] flippedColumn;
+		delete[] column;
+	}
+
+	return counter;
+}
+
+int BruteForce::checkForContinuous(int* arr, int constantValue)
+{
+	int continuousCount = 0;
+
+	for (int i = 0; i < puzzle->getDimensions(); i++)
+	{
+		int counter = 0;
+
+		for (int j = i + 1; j < (i + (constantValue)); j++)
+		{
+			if (j >= puzzle->getDimensions())
+				break;
+
+			if (arr[j] - 1 == arr[j - 1] &&
+				arr[j] != -1)
+			{
+				int i = 0;
+				counter++;
+			}
+		}
+		if (counter == (constantValue - 1))
+			continuousCount++;
+	}
+
+	return continuousCount;
+}
+
+int* BruteForce::flipArray(int* arr, int size)
+{
+	int* flipped = new int[size];
+
+	int iter = 0;
+	for (int i = (size - 1); i > -1; i--)
+	{
+		flipped[iter] = arr[i];
+		iter++;
+	}
+
+	return flipped;
 }
 
 bool BruteForce::checkForContinuous(int* arr)
@@ -98,15 +214,14 @@ bool BruteForce::checkForReverse(int* arr)
 	return true;
 }
 
-
 void BruteForce::calculateContinuousRows()
 {
 
 	int dimensions = puzzle->getDimensions();
-	for (int j = 0; j < (puzzle->getDimensions() * 2) + 1; j += dimensions)
+	for (int j = 0; j < (dimensions * 2) + 1; j += dimensions)
 	{
 		
-		int* row = new int[puzzle->getDimensions()];
+		int* row = new int[dimensions];
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -115,7 +230,7 @@ void BruteForce::calculateContinuousRows()
 
 		int rowIterator = 0;
 
-		for (int i = j; i < j + puzzle->getDimensions(); i++)
+		for (int i = j; i < j + dimensions; i++)
 		{
 			if (i == puzzle->getSize())
 				break;
@@ -137,7 +252,7 @@ void BruteForce::calculateContinuousColumns()
 {
 
 	int dimensions = puzzle->getDimensions();
-	for (int i = 0; i < puzzle->getDimensions(); i ++)
+	for (int i = 0; i < dimensions; i ++)
 	{
 		int* column = new int[dimensions];
 
@@ -148,7 +263,7 @@ void BruteForce::calculateContinuousColumns()
 
 		int columnIterator = 0;
 
-		for (int j = i; j < (i + (puzzle->getDimensions() * 2) + 1); j += dimensions)
+		for (int j = i; j < (i + (dimensions * 2) + 1); j += dimensions)
 		{
 			if (j == puzzle->getSize())
 				break;
@@ -166,79 +281,24 @@ void BruteForce::calculateContinuousColumns()
 	}
 }
 
-//void BruteForce::permutations(int k)
-//{
-//
-//	int* indexes = new int[k];
-//
-//	for (int i = 0; i < k; i++)
-//	{
-//		indexes[i] = 0;
-//	}
-//
-//			printArray();
-//			if (isLegalPermutation())
-//			{
-//				calculateContinuousRows();
-//				calculateContinuousColumns();
-//			}
-//
-//	for (int i = 1; i < k;) 
-//	{
-//		if (indexes[i] < i)
-//		{
-//			if ((i & 1) == 1)
-//			{
-//				swap(i, indexes[i]);
-//			}
-//			else
-//			{
-//				swap(i, 0);
-//			}
-//
-//			printArray();
-//			if (isLegalPermutation())
-//			{
-//				calculateContinuousRows();
-//				calculateContinuousColumns();
-//			}
-//
-//			indexes[i]++;
-//			i = 1;
-//		}
-//		else
-//		{
-//			indexes[i++] = 0;
-//		}
-//	}
-//}
-
-//void BruteForce::permutations(int k)
-//{
-//	std::sort(puzzle->getCopy(), puzzle->getCopy() + puzzle->getSize());
-//
-//	do {
-//		printArray();
-//		if (isLegalPermutation())
-//		{
-//			calculateContinuousRows();
-//			calculateContinuousColumns();
-//		}
-//	} while (std::next_permutation(puzzle->getCopy(), puzzle->getCopy() + puzzle->getSize()));
-//}
-
 void BruteForce::permutations(int k)
 {
 	if (k == 1)
 	{
-		//printArray();
 		if (isLegalPermutation())
 		{
 			calculateContinuousRows();
 			calculateContinuousColumns();
-		}
 
-		//Finished
+			totalNumberOfTwoPartial += calculatePartialContinuousRows(2);
+			totalNumberOfThreePartial += calculatePartialContinuousRows(3);
+			totalNumberOfFourPartial += calculatePartialContinuousRows(4);
+
+			totalNumberOfTwoPartial += calculatePartialContinuousColumns(2);
+			totalNumberOfThreePartial += calculatePartialContinuousColumns(3);
+			totalNumberOfFourPartial += calculatePartialContinuousColumns(4);
+
+		}
 	}
 	else
 	{

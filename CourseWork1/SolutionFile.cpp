@@ -11,16 +11,18 @@ SolutionFile::SolutionFile(std::vector<Solution*>& solutionsVal) : solutions(sol
 bool SolutionFile::solutionFileCreated()
 {
 	std::ofstream myfile;
-	myfile.open(fileName);
+	myfile.open(fileName, std::ifstream::in);
 
 	if (!myfile)
 	{
 		std::cout << "Solution-File creation failed, tring again" << std::endl;
+		myfile.close();
 		return false;
 	}
 	else
 	{
 		std::cout << "Solution-File created successfully" << std::endl;
+		myfile.close();
 		return true;
 	}
 }

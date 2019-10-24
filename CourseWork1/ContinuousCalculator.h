@@ -30,7 +30,6 @@ public:
 	int calculatePartialContinuousRowsStartingConfig(int constantValue);
 	int calculatePartialContinuousColumnsStartingConfig(int constantValue);
 	int checkForContinuousStartingConfig(int* arr, int constantValue);
-	int checkForReverseStartingConfig(int* arr, int constantValue);
 	int* flipArray(int* arr, int size);
 
 	unsigned long long factorial(int n);

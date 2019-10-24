@@ -1,18 +1,25 @@
 #pragma once
 #include "Puzzle.h"
 #include <algorithm> 
+#include "ContinuousCount.h"
 
 class BruteForce
 {
 protected:
-	int permutationCounter; // Test
 	int continuousRows;
 	int reverseContinuousRows;
 	int continuousColumns;
 	int reverseContinuousColumns;
 
-	Puzzle* puzzle;
+	int numberOfTwoPartialStartingConfig;
+	int numberOfThreePartialStartingConfig;
+	int numberOfFourPartialStartingConfig;
+	int totalNumberOfTwoPartial;
+	int totalNumberOfThreePartial;
+	int totalNumberOfFourPartial;
 
+	ContinuousCount* container;
+	Puzzle* puzzle;
 public:
 	BruteForce(Puzzle* puzzleVal);
 
@@ -26,7 +33,11 @@ public:
 	bool checkForReverse(int* arr);
 
 
+	int calculatePartialContinuousRows(int constantValue);
+	int calculatePartialContinuousColumns(int constantValue);
+	int checkForContinuous(int* arr, int constantValue);
+	int* flipArray(int* arr, int size);
 
-	void printArray(); // Testing
+	ContinuousCount& getContainer() const;
 };
 

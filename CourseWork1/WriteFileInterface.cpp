@@ -15,7 +15,7 @@ void WriteFileInterface::write15File()
 
 void WriteFileInterface::generatePuzzles(int puzzleCount, char generationMethod)
 {
-	if (generationMethod == 'r' && generateAllPuzzleAtOnce())
+	if (generationMethod == 'r' && ((puzzleCount > 1) && generateAllPuzzleAtOnce()))
 	{
 		std::cout << "Creation of puzzles all at once confirmed" << std::endl;
 		int dimensions = inputPuzzleDimension();
@@ -27,7 +27,11 @@ void WriteFileInterface::generatePuzzles(int puzzleCount, char generationMethod)
 	}
 	else 
 	{
-		std::cout << "Creation of puzzles individually confirmed" << std::endl;
+		if (puzzleCount > 1)
+		{
+			std::cout << "Creation of puzzles individually confirmed" << std::endl;
+		}
+		
 		for (int i = 0; i < puzzleCount; i++)
 		{
 			int dimensions = inputPuzzleDimension();
@@ -89,6 +93,7 @@ int WriteFileInterface::inputPuzzleCount()
 	while (!validNumber(puzzleCount))
 	{
 		std::cout << "Please enter a valid number" << std::endl;
+		std::cin.clear();
 		std::cin >> puzzleCount;
 	}
 
@@ -227,6 +232,6 @@ void WriteFileInterface::generatePuzzleManually(int puzzleDimension)
 
 bool WriteFileInterface::validNumber(int x)
 {
-	if (x <= 0)
+	if (x <= 0 || x == INT_MAX)
 		return false;
 }

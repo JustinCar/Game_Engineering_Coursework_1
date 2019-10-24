@@ -294,34 +294,6 @@ int ContinuousCalculator::checkForContinuousStartingConfig(int* arr, int constan
 	return continuousCount;
 }
 
-int ContinuousCalculator::checkForReverseStartingConfig(int* arr, int constantValue)
-{
-	int continuousCount = 0;
-	for (int i = 0; i < puzzle->getDimensions(); i++)
-	{
-		int counter = 0;
-
-		for (int j = i + 1; j < (i + (constantValue)); j++)
-		{
-			int a = 0;
-			if (j >= puzzle->getDimensions())
-				break;
-
-			if (arr[j] + 1 == arr[j - 1] &&
-				arr[j - 1] != -1)
-			{
-				counter++;
-				int i = 0;
-			}
-		}
-
-		if (counter == (constantValue - 1))
-			continuousCount++;
-	}
-
-	return continuousCount;
-}
-
 int* ContinuousCalculator::flipArray(int* arr, int size)
 {
 	int* flipped = new int[size];
