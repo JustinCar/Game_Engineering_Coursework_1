@@ -2,7 +2,9 @@
 
 ContinuousCalculator::ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal) : puzzle (puzzleVal), includeEmpty(includeEmptyVal)
 {
-	InfInt totalNumberOfContinuous = calculateContinuous();
+}
+
+void ContinuousCalculator::run(){	InfInt totalNumberOfContinuous = calculateContinuous();
 
 	InfInt numberOfTwoPartialStartingConfig = calculatePartialContinuousRowsStartingConfig(2) + calculatePartialContinuousColumnsStartingConfig(2);
 	InfInt numberOfThreePartialStartingConfig = calculatePartialContinuousRowsStartingConfig(3) + calculatePartialContinuousColumnsStartingConfig(3);

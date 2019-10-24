@@ -12,6 +12,7 @@
 #include <random>
 #include "WritePuzzleFile.h"
 #include "ReadPuzzleFile.h"
+#include <thread>
 
 class UserInterface
 {
@@ -19,6 +20,7 @@ protected:
 	std::vector<Puzzle*> puzzles;
 	std::default_random_engine generator;
 	using Dist = std::uniform_int_distribution<int>;
+	std::thread threads[6];
 
 public:
 	UserInterface();

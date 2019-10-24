@@ -1,5 +1,15 @@
 #include "ReadFileInterface.h"
 
+void ReadFileInterface::startBruteForceThread(BruteForce* job)
+{
+	job->run();
+}
+
+void ReadFileInterface::startFormulaThread(ContinuousCalculator* job)
+{
+	job->run();
+}
+
 void ReadFileInterface::run()
 {
 	read15File();
@@ -15,25 +25,61 @@ void ReadFileInterface::run()
 	if (!bruteForceAll)
 		formulaAll = useFormulaForAll();
 
-	for (int i = 0; i < puzzles.size(); i++)
+	for (int i = 0; i < puzzles.size(); i += 6)
 	{
-		if (!formulaAll &&
-			(bruteForceAll && puzzles[i]->getDimensions() <= 3 ||
-			(puzzles[i]->getDimensions() <= 3 && useBruteForce()))
-			)
+		std::vector<ContinuousCalculator*> formulaVector(6);
+		std::vector<BruteForce*> bruteVector(6);
+	
+		for (int j = 0; j < 6; j++) 
 		{
-			BruteForce b(puzzles[i]);
-			Solution* s = new Solution(puzzles[i], b.getContainer());
-			solutions.push_back(s);
-			printInfo(b.getContainer(), false);
-		}
-		else 
-		{
-			ContinuousCalculator c(puzzles[i], includeEmpty);
+			int index = i + j;
 
-			Solution* s = new Solution(puzzles[i], c.getContainer());
+			if (index >= puzzles.size())
+				break;
+
+			if (!formulaAll &&
+				(bruteForceAll && puzzles[index]->getDimensions() <= 3 ||
+				(puzzles[index]->getDimensions() <= 3 && useBruteForce()))
+				)
+			{
+				BruteForce* b = new BruteForce(puzzles[index]);
+				threads[j] = std::thread([b, this] {startBruteForceThread(b); });
+
+				bruteVector[j] = b;
+			}
+			else 
+			{
+				ContinuousCalculator* c = new ContinuousCalculator(puzzles[index], includeEmpty);
+				threads[j] = std::thread([c, this] {startFormulaThread(c); });
+
+				formulaVector[j] = c;
+			}
+		}
+
+		for (int k = 0; k < 6; k++) 
+		{
+			if (k + i >= puzzles.size())
+				break;
+
+			threads[k].join();
+		}
+
+		for (int k = 0; k < 6; k++)
+		{
+			if (k + i >= puzzles.size())
+				break;
+
+			Solution* s;
+			if (bruteVector[k]) 
+			{
+				s = new Solution(puzzles[i + k], bruteVector[k]->getContainer());
+			}
+			else
+			{
+				s = new Solution(puzzles[i + k], formulaVector[k]->getContainer());
+			}
+
 			solutions.push_back(s);
-			printInfo(c.getContainer(), true);
 		}
 	}
 
@@ -123,20 +169,6 @@ bool ReadFileInterface::includeEmptyTileRowAndColumn()
 	}
 }
 
-void ReadFileInterface::printInfo(ContinuousCount& result, bool usedFormula)
-{
-	if (usedFormula)
-		std::cout << "\n\n FORMULA IMPLEMENTATION" << std::endl;
-	else
-		std::cout << "\n\n BRUTEFORCE IMPLEMENTATION" << std::endl;
-
-	std::cout << "Continuous rows: " << result.getContinuousRows() << std::endl;
-	std::cout << "Reverse continuous rows: " << result.getReverseContinuousRows() << std::endl;
-	std::cout << "Continuous columns: " << result.getContinuousColumns() << std::endl;
-	std::cout << "Reverse continuous columns: " << result.getReverseContinuousColumns() << std::endl;
-
-}
-
 void ReadFileInterface::read15File()
 {
 	ReadPuzzleFile file(puzzles);
@@ -148,10 +180,4 @@ void ReadFileInterface::buildSolutionFile(std::vector<Solution*> solutions)
 
 	for (int i = 0; i < solutions.size(); i++)
 		delete solutions[i];
-}
-
-// Whether or not the starting configuration is solvable
-bool ReadFileInterface::validPuzzle()
-{
-	return true;
 }

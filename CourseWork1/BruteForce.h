@@ -23,6 +23,8 @@ protected:
 public:
 	BruteForce(Puzzle* puzzleVal);
 
+	void run();
+
 	bool isLegalPermutation();
 	void permutations(int k);
 	void swap(int pos1, int pos2);

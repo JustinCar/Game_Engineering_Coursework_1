@@ -15,6 +15,9 @@ protected:
 
 public:
 	ContinuousCalculator(Puzzle* puzzleVal, bool includeEmptyVal);
+
+	void run();
+
 	InfInt calculateContinuous();
 	InfInt calculatePartiallyContinuous(int constantValue);
 
