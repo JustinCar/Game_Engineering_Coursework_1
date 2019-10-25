@@ -58,8 +58,8 @@ bool ReadPuzzleFile::readPuzzle(std::vector<Puzzle*>& puzzles, std::ifstream& my
 		processLine(puzzleNumbers, line);
 	}
 
-	// three is smallest size possible for a valid grid (2x2)
-	if (puzzleNumbers.size() < 3)
+	// three is smallest size possible for a valid grid (3x3)
+	if (puzzleNumbers.size() < 8)
 		return false;
 
 	int* puzzleArray = new int[puzzleNumbers.size()];

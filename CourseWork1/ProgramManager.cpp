@@ -19,6 +19,7 @@ void ProgramManager::run()
 			userInterface.run();
 		}
 
+		
 		std::cout << "\nWould you like to run the program again? Enter y for yes or n for no" << std::endl;
 
 		char input;

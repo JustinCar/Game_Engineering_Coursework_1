@@ -81,6 +81,12 @@ void ReadFileInterface::run()
 
 			solutions.push_back(s);
 		}
+
+		for (int i = 0; i < bruteVector.size(); i++)
+			delete bruteVector[i];
+
+		for (int i = 0; i < formulaVector.size(); i++)
+			delete formulaVector[i];
 	}
 
 	buildSolutionFile(solutions);

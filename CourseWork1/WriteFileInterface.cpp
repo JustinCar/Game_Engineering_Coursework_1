@@ -232,6 +232,6 @@ void WriteFileInterface::generatePuzzleManually(int puzzleDimension)
 
 bool WriteFileInterface::validNumber(int x)
 {
-	if (x <= 0 || x == INT_MAX)
+	if (x <= 2 || x == INT_MAX)
 		return false;
 }

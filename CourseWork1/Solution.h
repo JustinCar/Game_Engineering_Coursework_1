@@ -19,6 +19,7 @@ protected:
 
 public:
 	Solution(Puzzle* puzzleVal, ContinuousCount& solutionVal);
+	~Solution();
 
 	Puzzle* getPuzzle() const;
 	ContinuousCount& getSolution() const;

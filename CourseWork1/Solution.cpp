@@ -4,6 +4,11 @@ Solution::Solution(Puzzle* puzzleVal, ContinuousCount& solutionVal) : puzzle(puz
 {
 }
 
+Solution::~Solution()
+{
+	delete &solution;
+}
+
 Puzzle* Solution::getPuzzle() const 
 {
 	return puzzle;

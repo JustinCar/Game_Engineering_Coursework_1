@@ -2,7 +2,6 @@
 
 int main()
 {
-
 	ProgramManager manager;
 	manager.run();
 
